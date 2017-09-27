@@ -32,9 +32,7 @@ while getopts ":ht:s:i:k:" opt; do
 				echo "true"
 				snIndex=$OPTARG
 			else
-				echo -ne $RED
-				echo "ERROR: Subnet index must be integer 0 or greater"
-				echo -ne $NC
+				echo -ne "${RED}ERROR: Subnet index must be integer 0 or greater${NC}"
 				exit 1
 			fi
 			;;
@@ -44,9 +42,7 @@ while getopts ":ht:s:i:k:" opt; do
 				iface="$OPTARG "
 				snIndex=0
 			else
-				echo -ne $RED
-				echo "ERROR: Invalide iface provided"
-				echo -ne $NC
+				echo -ne "${RED}ERROR: Invalid iface provided${NC}"
 				exit 1
 			fi
 			;;
@@ -54,9 +50,7 @@ while getopts ":ht:s:i:k:" opt; do
 			if [ -e "$OPTARG" ]; then
 				ssh_key_gw="$OPTARG"
 			else
-				echo -ne $RED
-				echo "ERROR: Invalide ssh key location provided"
-				echo -ne $NC
+				echo -ne "${RED}ERROR: Invalide ssh key location provided${NC}"
 				exit 1
 			fi
 			;;
@@ -71,9 +65,7 @@ done
 # get subnet once params are set
 subnet=$(bash "$JSHOR/.resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ]; then
-	echo -ne $RED
-	echo "ERROR: could not find valid subnet"
-	echo -ne $NC
+	echo -ne "${RED}ERROR: could not find valid subnet${NC}"
 	exit 1
 fi
 
