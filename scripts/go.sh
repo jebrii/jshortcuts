@@ -8,7 +8,6 @@ config_vars=$(bash "$JSHOR/.resources/sanitize.sh" "$JSHOR/.resources/.jshor_con
 eval "$config_vars"
 
 # local variables
-subnet=$(bash "$JSHOR/.resources/findSubnet.sh" $snIndex $iface)
 ip=0
 
 if [ -n $1 ]; then
@@ -19,7 +18,7 @@ else
 	exit 1
 fi
 
-while getopts ":ht:i:" opt; do
+while getopts ":ht:s:i:k:" opt; do
 	case $opt in
 		h)
 			echo "help page"
@@ -28,7 +27,7 @@ while getopts ":ht:i:" opt; do
 		t)
 			cmd="-t $OPTARG; bash -l"
 			;;
-		i)
+		s)
 			if [ $OPTARG =~ '^[0-9]+$' ]; then
 				echo "true"
 				snIndex=$OPTARG
@@ -39,8 +38,44 @@ while getopts ":ht:i:" opt; do
 				exit 1
 			fi
 			;;
+		i)
+			test_if=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG})
+			if [ "$test_if" = "$OPTARG" ]; then
+				iface="$OPTARG "
+				snIndex=0
+			else
+				echo -ne $RED
+				echo "ERROR: Invalide iface provided"
+				echo -ne $NC
+				exit 1
+			fi
+			;;
+		k)
+			if [ -e "$OPTARG" ]; then
+				ssh_key_gw="$OPTARG"
+			else
+				echo -ne $RED
+				echo "ERROR: Invalide ssh key location provided"
+				echo -ne $NC
+				exit 1
+			fi
+			;;
+		\?)
+      # bad option given
+      echo -e "${RED}Invalid option -$OPTARG ${NC}" <&2
+      exit 1
+      ;;
 	esac
 done
+
+# get subnet once params are set
+subnet=$(bash "$JSHOR/.resources/findSubnet.sh" $snIndex $iface)
+if [ -z "$subnet" ]; then
+	echo -ne $RED
+	echo "ERROR: could not find valid subnet"
+	echo -ne $NC
+	exit 1
+fi
 
 if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 	while true; do
@@ -51,7 +86,7 @@ if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 			sleep 30
 		fi
 	done
-	eval "ssh $user@$subnet.$ip -i $key $cmd"
+	eval "ssh $user@$subnet.$ip -i $ssh_key_gw $cmd"
 else
 	echo "Please give me a valid ip!"
 	exit 1
