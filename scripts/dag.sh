@@ -1,5 +1,7 @@
 #! /bin/bash
 
+source "/Users/henryr/.bash_profile"
+
 # preset values
 iface="en0"
 ip="$1"

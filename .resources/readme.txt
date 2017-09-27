@@ -15,7 +15,7 @@ Here's an example of some lines you might want to add to your ~/.bash_profile
 
 # Globals
 
-JSHOR='/Users/henryr/Google Drive/_dev/Scripts/jshortcuts'
+JSHOR='/Users/[your-user]/jshortcuts'
 
 RED='\033[0;31m'
 BLUE='\033[0;34m'
@@ -39,17 +39,15 @@ WHITE='\033[1;37m'
 # Aliases
 
 alias cdj='cd "$JSHOR"'
-alias rsc="source /Users/henryr/.bash_profile"
 
-alias go='bash "$JSHOR/go.sh"'
-alias gimme='bash "$JSHOR/gimme.sh"'
+alias go='bash "$JSHOR/scripts/go.sh"'
+alias gimme='bash "$JSHOR/scripts/gimme.sh"'
 
-alias dag='bash "$JSHOR/diagnosticsPages.sh"'
-alias jira='bash "$JSHOR/openJIRAticket.sh"'
-alias peek='bash "$JSHOR/peek.sh"'
+alias dag='bash "$JSHOR/scripts/dag.sh"'
+alias jira='bash "$JSHOR/scripts/openJIRAticket.sh"'
+alias peek='bash "$JSHOR/scripts/peek.sh"'
 
-alias aliasAdd='sudo bash "$JSHOR/IFAliasAdder.sh"'
-
+alias ala='sudo bash "$JSHOR/scripts/AliasAdder.sh"'
 ----------------------------------------------------
 
 After you edit your bash profile, make certain to run "source ~/.bash_profile" to make
