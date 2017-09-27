@@ -1,0 +1,24 @@
+
+# globals
+
+# user specific
+
+ssh_key_gw='/Users/henryr/.ssh/keys/candi4k'
+ssh_key_cloud='/Users/henryr/.ssh/keys/gcloud_key'
+ssh_key_comp='/Users/henryr/.ssh/keys/id_rsa'
+
+# used in findSubnets.sh
+snIndex='1' # skip localhost
+iface='' # scan all ifaces
+
+# used in go.sh, peek.sh, gimme.sh, and dag.sh
+user='root'
+
+
+# aliasAdder
+
+interface="en0"           # Henry's wifi interface
+aliasIP="10.37.37.248"    # Preset IP for Henry on 10.37.37.0 subnet
+netmask="255.255.255.0"   # Standard netmask
+
+echo "this should not be read"
