@@ -3,12 +3,9 @@
 # TODO: make it so we don't have to do this!!
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resourve file(s)
-config_file="$JSHOR/.resources/.jshor_config"
-config_file_secure="$JSHOR/.resources/.jshor_config_secure"
-egrep '^#|^[^ ]*=[^;&]*' "$config_file" > "$config_file_secure"
-
-source "$config_file_secure"
+# sanitize and source resource file(s)
+config_vars=$(bash "$JSHOR/.resources/sanitize.sh" "$JSHOR/.resources/.jshor_config")
+eval "$config_vars"
 
 # local variables
 subnet=$(bash "$JSHOR/.resources/findSubnet.sh" $snIndex $iface)
@@ -44,9 +41,6 @@ while getopts ":ht:i:" opt; do
 			;;
 	esac
 done
-
-
-echo $ip
 
 if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 	while true; do
