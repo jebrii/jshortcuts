@@ -11,8 +11,10 @@ eval "$config_vars"
 ip=0
 
 if [ -n $1 ]; then
-	ip=$1
-	shift
+	if [ ${1:0:1} != "-" ]; then
+		ip=$1
+		shift
+	fi
 else
 	echo "Please give me a valid ip!"
 	exit 1
