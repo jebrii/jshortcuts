@@ -51,6 +51,7 @@ alias jira='bash "$JSHOR/scripts/openJIRAticket.sh"'
 alias peek='bash "$JSHOR/scripts/peek.sh"'
 
 alias ala='sudo bash "$JSHOR/scripts/AliasAdder.sh"'
+
 ----------------------------------------------------
 
 After you edit your bash profile, make certain to run "source ~/.bash_profile" to make
