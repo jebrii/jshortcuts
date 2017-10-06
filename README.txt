@@ -14,6 +14,7 @@ These can be used easily when added to your ~/.bash_profile.
 Here's an example of some lines you might want to add to your ~/.bash_profile
 
 ----------------------------------------------------
+
 # ========== jshortcut aliases ==========
 
 # Globals
@@ -60,7 +61,7 @@ certain the aliases are committed
 As of the authorship of this readme, the directory structure is as follows:
 
 jshortcuts
-  README.md
+  README.txt
   resources
     findSubnet.sh
     ft_dir.sh
