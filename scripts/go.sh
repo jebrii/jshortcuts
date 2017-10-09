@@ -4,7 +4,7 @@
 source "/Users/henryr/.bash_profile"
 
 # sanitize and source resource file(s)
-config_vars=$(bash "$JSHOR/.resources/sanitize.sh" "$JSHOR/.resources/.jshor_config")
+config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -14,17 +14,21 @@ if [ -n $1 ]; then
 	if [ ${1:0:1} != "-" ]; then
 		ip=$1
 		shift
+		if [ -n $1 ]; then
+			if [ ${1:0:1} != "-" ]; then
+				iface=$1
+				shift
+			fi
+		fi
 	fi
-else
-	echo "Please give me a valid ip!"
-	exit 1
 fi
 
 while getopts ":ht:s:i:k:" opt; do
 	case $opt in
 		h)
-			echo "help page"
-			exit 0
+		cat "$JSHOR/resources/.help_pages/go_help.txt"
+		# When help is triggered, exit ignoring other commands
+		exit 0
 			;;
 		t)
 			cmd="-t $OPTARG; bash -l"
@@ -65,7 +69,7 @@ while getopts ":ht:s:i:k:" opt; do
 done
 
 # get subnet once params are set
-subnet=$(bash "$JSHOR/.resources/findSubnet.sh" $snIndex $iface)
+subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ]; then
 	echo -ne "${RED}ERROR: could not find valid subnet${NC}"
 	exit 1

@@ -1,7 +1,13 @@
 #!/bin/bash
 
-proj="CANDI"
-browser="Google Chrome"
+# TODO: make it so we don't have to do this!!
+source "/Users/henryr/.bash_profile"
+
+# sanitize and source resource file(s)
+config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+eval "$config_vars"
+
+# local variables
 addons=""
 
 if [ $# -eq 0 ]; then # test for arguments at all
@@ -12,23 +18,10 @@ else
     ticket=$1
     shift
   fi
-  while getopts ":hp:t:cfb:N" opt; do
+  while getopts ":hp:t:cfb:Ns:" opt; do
     case $opt in
       h)
-        echo "This is the help script for openJIRAticket.sh by jebri...."
-        echo "..."
-        echo "...or rather it will be"
-        echo ""
-        echo "-h for help"
-        echo "-p to set project (e.g. \"-p CANDI\")"
-        echo "-c to open with Google Chrome"
-        echo "-f to open with Firefox"
-        echo "-b to set the browser manually (enter text string of browser application on your machine)"
-        echo "-t sets the ticket"
-        echo "-N opens the ticket in a new window"
-        echo ""
-        echo "This script can be run without any options and requires only the argument of the ticket desired."
-        echo "If only the ticket number is provided, it will default to project CANDI and browser Google Chrome."
+        cat "$JSHOR/resources/.help_pages/open_jira_help.txt"
         # When help is triggered, exit ignoring other commands
         exit 0
 	      ;;
@@ -78,6 +71,14 @@ else
         # add -n to addons
         addons="-n "
         ;;
+      s)
+        if [ -e "$OPTARG" ]; then
+          at_server="$OPTARG"
+        else
+          echo -ne "${RED}ERROR: Invalide atlassian server provided${NC}"
+          exit 1
+        fi
+        ;;
       \?)
         # bad option given
         echo "Invalid option -$OPTARG" <&2
@@ -88,9 +89,7 @@ else
   if [ $ticket -gt 0 ] && [ $ticket -le 999999 ]; then # check if ticket is a number
     # all options are set, execute the command
     echo "Opening ticket $proj-$ticket with browser: $browser"
-#D    echo "DEBUG: this is the command..."
-#D    echo "open -a \"$browser\" \"https://candicontrols.atlassian.net/browse/$proj-$ticket\""
-    open -a "$browser" $addons"https://candicontrols.atlassian.net/browse/$proj-$ticket"
+    open -a "$browser" $addons"https://$at_server.atlassian.net/browse/$proj-$ticket"
   else
     echo "ERROR: \"$ticket\" is not valid. Please enter a valid ticket number between 1 and 999999"
     exit 1

@@ -1,0 +1,18 @@
+JIRA Ticket Opener help page
+
+(from script)
+
+echo "This is the help script for openJIRAticket.sh by jebri...."
+echo "..."
+echo "...or rather it will be"
+echo ""
+echo "-h for help"
+echo "-p to set project (e.g. \"-p CANDI\")"
+echo "-c to open with Google Chrome"
+echo "-f to open with Firefox"
+echo "-b to set the browser manually (enter text string of browser application on your machine)"
+echo "-t sets the ticket"
+echo "-N opens the ticket in a new window"
+echo ""
+echo "This script can be run without any options and requires only the argument of the ticket desired."
+echo "If only the ticket number is provided, it will default to project CANDI and browser Google Chrome."

@@ -1,0 +1,17 @@
+Alias Adder help page
+
+
+(from the script)
+
+echo -ne $CYAN
+echo ''
+echo 'aliasAdd: Used to quickly set an alias to a network interface.'
+echo ''
+echo 'Usage: aliasAdd [aliasIP] [-i:a:n:rh] [parameters]'
+echo ''
+echo "-h for help"
+echo "-i to set interface (e.g. \"$interface\")"
+echo "-a to set alias IP (e.g. \"$aliasIP\")"
+echo "-n to set netmask (e.g. \"$netmask\")"
+echo "-r to specify remove of alias (rather than add)"
+echo -ne $NC

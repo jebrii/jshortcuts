@@ -56,9 +56,6 @@ if [ $ip -ge 2 -a $ip -le 255 ]; then
 		fi
 	done
 	open -a "Google Chrome" "http://$subnet.$ip"
-	else
-		echo "ERROR: Value provided is not a valid number."
-	fi
 else
-	echo "ERROR: Gateway IP not provided. Please provide the last octet of the gateway's local IP."
+	echo "ERROR: Value provided is not a valid number."
 fi
