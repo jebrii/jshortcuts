@@ -19,24 +19,24 @@ while getopts ":hs:i:t:k:" opt; do
 			if [ $OPTARG =~ '^[0-9]+$' ] 2>/dev/null; then
 				snIndex=$OPTARG
 			else
-				echo -e "${RED}ERROR: Subnet index must be integer 0 or greater${NC}" <&2
+				echo -e "${RED}ERROR: Subnet index must be integer 0 or greater${NC}" >&2
 				exit 1
 			fi
 			;;
 		i)
-			test_if=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG}) <&2
+			test_if=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG}) >&2
 			if [ "$test_if" = "$OPTARG" ]; then
 				iface="$OPTARG "
 				snIndex=0
 			else
-				echo -e "${RED}ERROR: Invalid iface provided${NC}" <&2
+				echo -e "${RED}ERROR: Invalid iface provided${NC}" >&2
 				exit 1
 			fi
 			;;
 		t)	cmd="-t $OPTARG; bash -l";;
 		k)	ssh_key_gw="$OPTARG";;
 		\?)
-      echo -e "${RED}Invalid option -$OPTARG ${NC}" <&2
+      echo -e "${RED}Invalid option -$OPTARG ${NC}" >&2
       exit 1
       ;;
 	esac
@@ -53,7 +53,7 @@ fi
 # get subnet once params are set
 subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ]; then
-	echo -e "${RED}ERROR: could not find valid subnet${NC}" <&2
+	echo -e "${RED}ERROR: could not find valid subnet${NC}" >&2
 	exit 1
 fi
 
