@@ -13,8 +13,9 @@ snIndex='1' # skip localhost
 iface='' # scan all ifaces
 
 # used in go.sh, peek.sh, gimme.sh, and dag.sh
-user='root'
 
+user='root'
+dest="."
 
 # aliasAdder
 

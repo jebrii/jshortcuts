@@ -5,5 +5,8 @@ Make it so .bash_profile isn't needed to find $JSHOR (some require thing?)
 Make all scripts get config
 Make it so we don't have to source .bash_profile for JSHOR
 Write help texts
+Make getopts look like those is go_2.sh
+Make it so findsubnets verifies inputs
+
 
 Change this all to ruby?

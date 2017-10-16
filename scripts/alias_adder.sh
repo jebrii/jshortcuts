@@ -15,7 +15,7 @@ if [ -n $1 ]; then
 		shift
 		if [ -n $1 ]; then
 			if [ ${1:0:1} != "-" ]; then
-				iface=$1
+				al_iface=$1
 				shift
 			fi
 		fi
@@ -37,7 +37,7 @@ while getopts ":i:a:n:rh" opt; do
         exit 1
       else
         # Set inteface to argument
-        iface="$OPTARG"
+        al_iface="$OPTARG"
       fi
       ;;
     a)
@@ -74,17 +74,17 @@ done
 
 # arguments parsed - run command
 if $remove; then
-  ifconfig $iface -alias $al_ip $al_nm
+  ifconfig $al_iface -alias $al_ip $al_nm
   if [ $? -eq 0 ]; then
-    echo "Alias successfully removed from $iface with IP of $al_ip and netmask of $al_nm"
+    echo "Alias successfully removed from $al_iface with IP of $al_ip and netmask of $al_nm"
   else
     echo -e "${RED}Alias remove failed${NC}"
     exit 1
   fi
 else
-  ifconfig $iface alias $al_ip $al_nm
+  ifconfig $al_iface alias $al_ip $al_nm
   if [ $? -eq 0 ]; then
-    echo "Alias successfully added to $iface with IP of $al_ip and netmask of $al_nm"
+    echo "Alias successfully added to $al_iface with IP of $al_ip and netmask of $al_nm"
   else
     echo -e "${RED}Alias add failed${NC}"
     exit 1

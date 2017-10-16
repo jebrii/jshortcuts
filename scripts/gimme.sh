@@ -29,11 +29,10 @@ fi
 echo $ip
 echo $file
 
-while getopts ":ht:s:i:kf:r" opt; do
+while getopts ":ht:s:i:kf:d:r" opt; do
 	case $opt in
 		h)
 		cat "$JSHOR/resources/.help_pages/gimme_help.txt"
-		# When help is triggered, exit ignoring other commands
 		exit 0
 			;;
 		t)
@@ -74,6 +73,14 @@ while getopts ":ht:s:i:kf:r" opt; do
         exit 1
       fi
       ;;
+		d)
+			if [ -e "$OPTARG" ]; then
+				dest="$OPTARG"
+			else
+				echo -ne "${RED}ERROR: Invalide file destination provided${NC}"
+				exit 1
+			fi
+			;;
     r)
       reverse="true";
       ;;
@@ -106,9 +113,9 @@ if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 		read file
 	fi
   if [ $reverse == "true" ]; then
-    scp -i $ssh_key_gw $file "$user@$subnet.$ip:."
+    scp -i $ssh_key_gw $file "$user@$subnet.$ip:$dest"
   else
-     scp -i $ssh_key_gw "$user@$subnet.$ip:$file" .
+     scp -i $ssh_key_gw "$user@$subnet.$ip:$file" $dest
    fi
 else
 	echo "Please gimme a valid ip!"
