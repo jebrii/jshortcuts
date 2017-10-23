@@ -53,24 +53,21 @@ As of the authorship of this readme, the directory structure is as follows:
 
 jshortcuts
   README.txt
+  .old
+    [old/deprecated scripts]
   resources
+    .help_pages
+      [help pages for all scripts]
+    .jshor_config
+    aliases.sh
     findSubnet.sh
-    ft_dir.sh
     sanitize.sh
-    term.sh
-  old
-    diagnosticsPages_old.sh
-    jsonTablesCopy.sh
-    openJIRAticket_old.sh
-    tunnels.sh
-    geteGaugeData.sh
-    manyTunnels.sh
-    setupRemoteWebLink.sh
   scripts
+    add_keys.sh
     alias_adder.sh
-    gimme.sh
-    open_jira.sh
-    showBMPProducts.php
     dag.sh
+    gimme.sh
     go.sh
+    open_jira.sh
     peek.sh
+    showBMPProducts.php
