@@ -13,21 +13,14 @@ eval "$config_vars"
 ip=0
 reverse="false"
 
-if [ -n $1 ]; then
-	if [ ${1:0:1} != "-" ]; then
-		ip=$1
+if [ -n $1 -a ${1:0:1} != "-" ]; then
+	ip=$1
+  shift
+  if [ -n $1 -a ${1:0:1} != "-" ]; then
+    file=$1
     shift
-    if [ -n $1 ]; then
-			if [ ${1:0:1} != "-" ]; then
-        file=$1
-        shift
-      fi
-    fi
-	fi
+  fi
 fi
-
-echo $ip
-echo $file
 
 while getopts ":ht:s:i:kf:d:r" opt; do
 	case $opt in
@@ -35,67 +28,45 @@ while getopts ":ht:s:i:kf:d:r" opt; do
 		cat "$JSHOR/resources/.help_pages/gimme_help.txt"
 		exit 0
 			;;
-		t)
-			cmd="-t $OPTARG; bash -l"
-			;;
+		t) cmd="-t $OPTARG; bash -l";;
 		s)
 			if [ $OPTARG =~ '^[0-9]+$' ]; then
 				echo "true"
 				snIndex=$OPTARG
 			else
-				echo -ne "${RED}ERROR: Subnet index must be integer 0 or greater${NC}"
+				echo -e "${RED}ERROR: Subnet index must be integer 0 or greater.${NC}" >&2
 				exit 1
 			fi
 			;;
 		i)
-			test_if=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG})
-			if [ "$test_if" = "$OPTARG" ]; then
+			test_iface=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG})
+			if [ "$test_iface" = "$OPTARG" ]; then
 				iface="$OPTARG "
 				snIndex=0
 			else
-				echo -ne "${RED}ERROR: Invalid iface provided${NC}"
+				echo -e "${RED}ERROR: Invalid iface provided.${NC}" >&2
 				exit 1
 			fi
 			;;
-		k)
-			if [ -e "$OPTARG" ]; then
-				ssh_key_gw="$OPTARG"
-			else
-				echo -ne "${RED}ERROR: Invalide ssh key location provided${NC}"
-				exit 1
-			fi
+		k) ssh_key_gw="$OPTARG";;
+    f) file="$OPTARG";;
+		d) dest="$OPTARG";;
+    r) reverse="true";;
+		:)
+			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
+			cat "$JSHOR/resources/.help_pages/gimme_help.txt"
+			exit 1
 			;;
-    f)
-      if [ -e "$OPTARG" ]; then
-        file="$OPTARG"
-      else
-        echo -ne "${RED}ERROR: Invalide file provided${NC}"
-        exit 1
-      fi
-      ;;
-		d)
-			if [ -e "$OPTARG" ]; then
-				dest="$OPTARG"
-			else
-				echo -ne "${RED}ERROR: Invalide file destination provided${NC}"
-				exit 1
-			fi
-			;;
-    r)
-      reverse="true";
-      ;;
 		\?)
-      # bad option given
       echo -e "${RED}Invalid option -$OPTARG ${NC}" <&2
       exit 1
       ;;
 	esac
 done
 
-# get subnet once params are set
 subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ]; then
-	echo -ne "${RED}ERROR: could not find valid subnet${NC}"
+	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1
 fi
 
@@ -118,6 +89,6 @@ if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
      scp -i $ssh_key_gw "$user@$subnet.$ip:$file" $dest
    fi
 else
-	echo "Please gimme a valid ip!"
+	echo "Please gimme a valid ip!" >&2
 	exit 1
 fi

@@ -12,16 +12,12 @@ while true; do
 	for i in 1 2 3; do
 		octets+=($(echo $subnet | cut -d . -f $i))
 	done
-	if [ -n ${octets[0]} ]; then
-		if [ -n ${octets[1]} ]; then
-			if [ -n ${octets[2]} ]; then
-				break
-			fi
-		fi
+	if [ -n ${octets[0]} -a -n ${octets[1]} -a -n ${octets[2]} ]; then
+		break
 	fi
 	let snIndex++
 	if [ $snIndex -gt ${#allSubnets[@]} ]; then
-		echo "ERROR: Could not find valid subnet."
+		echo "${RED}ERROR: Could not find valid subnet.${NC}" >&2
 		exit 1
 	fi
 done

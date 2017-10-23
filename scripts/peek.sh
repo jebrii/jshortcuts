@@ -1,13 +1,8 @@
 #! /bin/bash
 
-# preset values
-# iface="en0 "
-ip="$1"
-key="/Users/henryr/.ssh/keys/candi4k"
-user="root"
-snIndex="1" # skip localhost
+config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+eval "$config_vars"
 
-# ssh in with a command
 if [ $# -eq 2 ] ; then
 	cmd='-t "'$2'; bash -l"'
 	echo "cmd = \"$cmd\""
@@ -17,34 +12,11 @@ fi
 
 # TODO: write a getopts that changes above values
 
-# assign variables after options are parsed
-allSubnets=($(ifconfig $iface| grep "inet " | cut -d " " -f 2 | cut -d . -f 1-3))
-while true; do
-	subnet=${allSubnets[$snIndex]}
-
-	octets=()
-	for i in 1 2 3; do
-		octets+=($(echo $subnet | cut -d . -f $i))
-#		echo " array is: ${octets[@]} ...after iteration $i"
-	done
-	if [ -n ${octets[0]} ]; then
-		if [ -n ${octets[1]} ]; then
-			if [ -n ${octets[2]} ]; then
-#				echo "good subnet: $subnet"
-				break
-			fi
-		fi
-	fi
-	let snIndex++
-	if [ $snIndex -gt ${#allSubnets[@]} ]; then
-		echo "ERROR: Could not find valid subnet."
-		exit 1
-	fi
-done
-
-# echo "subnets:"
-# echo ${allSubnets[@]}
-# echo "chosen subnet: $subnet"
+subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ -z "$subnet" ]; then
+	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
+	exit 1
+fi
 
 if [ $ip -ge 2 -a $ip -le 255 ]; then
 	while true; do
@@ -57,5 +29,5 @@ if [ $ip -ge 2 -a $ip -le 255 ]; then
 	done
 	open -a "Google Chrome" "http://$subnet.$ip"
 else
-	echo "ERROR: Value provided is not a valid number."
+	echo -e "${RED}ERROR: Value provided is not a valid number.${NC}" >&2
 fi

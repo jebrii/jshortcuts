@@ -2,24 +2,36 @@
 
 source "/Users/henryr/.bash_profile"
 
-# preset values
-iface="en0"
-ip="$1"
-snIndex="0"
+# sanitize and source resourve file(s)
+config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+eval "$config_vars"
 
-# TODO: write a getopts that changes above values
+# local variables
+
+
+if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
+	ip=$1
+	shift
+	if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null ; then
+		iface=$1
+		snIndex=0
+		shift
+	fi
+fi
+
+# TODO: write a getopts
 
 # assign variables after options are parsed
-allSubnets=($(ifconfig $iface | grep "inet " | cut -d " " -f 2 | cut -d . -f 1-3))
-subnet=${allSubnets[$snIndex]}
+subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ -z "$subnet" ] 2>/dev/null; then
+	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
+	exit 1
+fi
 
-if [ "$ip" != "" ]; then
-	if [ $ip -ge 2 -a $ip -le 255 ]; then
-		open -a "Google Chrome" 'http://10.38.0.'$ip'/Zuul/native'
-		echo "Opening zuul native page...."
-	else
-		echo "ERROR: Value provided is not a valid number."
-	fi
+if [ "$ip" != "" -a $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
+	for i in ${dag_pages[@]}; do
+		open -a "Google Chrome" "http://$subnet.$ip/$i"
+	done
 else
-	echo "ERROR: Gateway IP not provided. Please provide the last octet of the gateway's local IP."
+	echo -e "${RED}ERROR: Please provide a valid IP.${NC}" >&2
 fi

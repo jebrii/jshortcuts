@@ -9,76 +9,48 @@ eval "$config_vars"
 # local variables
 remove=false
 
-if [ -n $1 ]; then
-	if [ ${1:0:1} != "-" ]; then
-		al_ip=$1
+if [ -n $1 -a ${1:0:1} != "-" ]; then
+	al_ip=$1
+	shift
+	if [ -n $1 -a ${1:0:1} != "-" ]; then
+		al_iface=$1
 		shift
-		if [ -n $1 ]; then
-			if [ ${1:0:1} != "-" ]; then
-				al_iface=$1
-				shift
-			fi
-		fi
 	fi
 fi
 
 while getopts ":i:a:n:rh" opt; do
-#D    echo "DEBUG: entered while loop"
-  case $opt in
+	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
+		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
+		cat "$JSHOR/resources/.help_pages/alias_adder_help.txt"
+		exit 1
+	fi
+	case $opt in
     h)
       cat "$JSHOR/resources/.help_pages/alias_adder_help.txt"
-      # When help is triggered, exit ignoring other commands
       exit 0
       ;;
-    i)
-      # check for empty argument
-      if [ $OPTARG = "" ] || [ ${OPTARG:0:1} = "-" ] ; then
-        echo -e "${RED}ERROR: No argument given for option -i${NC}" >&2
-        exit 1
-      else
-        # Set inteface to argument
-        al_iface="$OPTARG"
-      fi
-      ;;
-    a)
-      # check for empty argument
-      if [ $OPTARG = "" ] || [ ${OPTARG:0:1} = "-" ] ; then
-        echo -e "${RED}ERROR: No argument given for option -a${NC}" >&2
-        exit 1
-      else
-        # set alias ip to argument
-        al_ip="$OPTARG"
-      fi
-      ;;
-    n)
-      # check for empty argument
-      if [ $OPTARG = "" ] || [ ${OPTARG:0:1} = "-" ] ; then
-        echo -e "${RED}ERROR: No argument given for option -n${NC}" >&2
-        exit 1
-      else
-        # set netmask to argument
-        al_nm="$OPTARG"
-      fi
-      ;;
-    r)
-      # Add hyphen before alias to make it so alias is removed
-      remove=true
-      ;;
+    i) al_iface="$OPTARG";;
+    a) al_ip="$OPTARG";;
+    n) al_nm="$OPTARG";;
+    r) remove=true;;
+		:)
+			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
+			cat "$JSHOR/resources/.help_pages/alias_adder_help.txt"
+			exit 1
+			;;
     \?)
-      # bad option given
-      echo -e "${RED} Invalid option -$OPTARG ${NC}" <&2
+      echo -e "${RED}ERROR: Invalid option -$OPTARG.${NC}" >&2
       exit 1
       ;;
   esac
 done
 
-# arguments parsed - run command
 if $remove; then
   ifconfig $al_iface -alias $al_ip $al_nm
   if [ $? -eq 0 ]; then
     echo "Alias successfully removed from $al_iface with IP of $al_ip and netmask of $al_nm"
   else
-    echo -e "${RED}Alias remove failed${NC}"
+    echo -e "${RED}ERROR: Alias remove failed.${NC}"
     exit 1
   fi
 else
@@ -86,7 +58,7 @@ else
   if [ $? -eq 0 ]; then
     echo "Alias successfully added to $al_iface with IP of $al_ip and netmask of $al_nm"
   else
-    echo -e "${RED}Alias add failed${NC}"
+    echo -e "${RED}ERROR: Alias add failed.${NC}"
     exit 1
   fi
 fi

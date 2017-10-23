@@ -10,34 +10,33 @@ eval "$config_vars"
 # local variables
 ip=0
 
-if [ -n $1 ]; then
-	if [ ${1:0:1} != "-" ]; then
-		ip=$1
+if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
+	ip=$1
+	shift
+	if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null ; then
+		iface=$1
+		snIndex=0
 		shift
-		if [ -n $1 ]; then
-			if [ ${1:0:1} != "-" ]; then
-				iface=$1
-				shift
-			fi
-		fi
 	fi
 fi
 
 while getopts ":ht:s:i:k:" opt; do
+	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
+		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
+		cat "$JSHOR/resources/.help_pages/go_help.txt"
+		exit 1
+	fi
 	case $opt in
 		h)
 		cat "$JSHOR/resources/.help_pages/go_help.txt"
-		# When help is triggered, exit ignoring other commands
 		exit 0
 			;;
-		t)
-			cmd="-t $OPTARG; bash -l"
-			;;
+		t) cmd="-t $OPTARG; bash -l";;
 		s)
-			if [ $OPTARG =~ '^[0-9]+$' ]; then
+			if [ $OPTARG =~ '^[0-9]+$' ] 2>/dev/null; then
 				snIndex=$OPTARG
 			else
-				echo -ne "${RED}ERROR: Subnet index must be integer 0 or greater${NC}"
+				echo -e "${RED}ERROR: Subnet index must be a positive integer.${NC}" >&2
 				exit 1
 			fi
 			;;
@@ -47,30 +46,26 @@ while getopts ":ht:s:i:k:" opt; do
 				iface="$OPTARG "
 				snIndex=0
 			else
-				echo -ne "${RED}ERROR: Invalid iface provided${NC}"
+				echo -e "${RED}ERROR: Invalid iface provided.${NC}" >&2
 				exit 1
 			fi
 			;;
-		k)
-			if [ -e "$OPTARG" ]; then
-				ssh_key_gw="$OPTARG"
-			else
-				echo -ne "${RED}ERROR: Invalide ssh key location provided${NC}"
-				exit 1
-			fi
+		k) ssh_key_gw="$OPTARG";;
+		:)
+			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
+			cat "$JSHOR/resources/.help_pages/go_help.txt"
+			exit 1
 			;;
 		\?)
-      # bad option given
-      echo -e "${RED}Invalid option -$OPTARG ${NC}" <&2
+      echo -e "${RED}Invalid option -$OPTARG.${NC}" >&2
       exit 1
       ;;
 	esac
 done
 
-# get subnet once params are set
 subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ]; then
-	echo -ne "${RED}ERROR: could not find valid subnet${NC}"
+	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1
 fi
 

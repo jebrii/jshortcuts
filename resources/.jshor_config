@@ -7,7 +7,7 @@ ssh_key_gw='/Users/henryr/.ssh/keys/candi'
 ssh_key_cloud='/Users/henryr/.ssh/keys/gcloud_key'
 ssh_key_comp='/Users/henryr/.ssh/keys/id_rsa'
 
-# used in findSubnets.sh
+# used in scripts to pass to findSubnets.sh
 
 snIndex='1' # skip localhost
 iface='' # scan all ifaces
@@ -16,6 +16,8 @@ iface='' # scan all ifaces
 
 user='root'
 dest="."
+
+dag_pages=( 'Zuul/native' 'Zuul/zuulServer?cmd=get_labels' 'Zuul/zuulServer?cmd=discovery')
 
 # aliasAdder
 
