@@ -2,7 +2,6 @@
 
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resourve file(s)
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 

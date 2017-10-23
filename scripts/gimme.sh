@@ -2,10 +2,8 @@
 
 #! /bin/bash
 
-# TODO: make it so we don't have to do this!!
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resource file(s)
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 

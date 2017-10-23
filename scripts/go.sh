@@ -1,9 +1,7 @@
 #! /bin/bash
 
-# TODO: make it so we don't have to do this!!
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resource file(s)
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
@@ -28,8 +26,8 @@ while getopts ":ht:s:i:k:" opt; do
 	fi
 	case $opt in
 		h)
-		cat "$JSHOR/resources/.help_pages/go_help.txt"
-		exit 0
+			cat "$JSHOR/resources/.help_pages/go_help.txt"
+			exit 0
 			;;
 		t) cmd="-t $OPTARG; bash -l";;
 		s)

@@ -6,6 +6,7 @@
 ssh_key_gw='/Users/henryr/.ssh/keys/candi'
 ssh_key_cloud='/Users/henryr/.ssh/keys/gcloud_key'
 ssh_key_comp='/Users/henryr/.ssh/keys/id_rsa'
+ssh_keys='/Users/henryr/.ssh/keys/'
 
 # used in scripts to pass to findSubnets.sh
 

@@ -1,12 +1,12 @@
 TODO:
 
-[ ] Make it so dag, gimme, and peek all use the same subnet parsing as go
+[x] Make it so dag, gimme, and peek all use the same subnet parsing as go
 [ ] Make it so .bash_profile isn't needed to find $JSHOR (some require thing?)
-[ ] Make all scripts get config file
+[x] Make all scripts get config file
 [ ] Write help texts
 [ ] Make it so findsubnets verifies inputs
-[ ] Standardize error reporting (>&2, <&2, >2&)???
-[ ] Standardize error coloring
+[x] Standardize error reporting (>&2, <&2, >2&)???
+[x] Standardize error coloring
 [ ] add comments
 [ ] getopts for dag
 

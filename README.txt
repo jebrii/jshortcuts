@@ -42,16 +42,7 @@ WHITE='\033[1;37m'
 
 # Aliases
 
-alias cdj='cd "$JSHOR"'
-
-alias go='bash "$JSHOR/scripts/go.sh"'
-alias gimme='bash "$JSHOR/scripts/gimme.sh"'
-
-alias dag='bash "$JSHOR/scripts/dag.sh"'
-alias jira='bash "$JSHOR/scripts/open_jira.sh"'
-alias peek='bash "$JSHOR/scripts/peek.sh"'
-
-alias ala='sudo bash "$JSHOR/scripts/alias_adder.sh"'
+source "$JSHOR/resources/aliases.sh"
 
 ----------------------------------------------------
 
@@ -76,7 +67,7 @@ jshortcuts
     manyTunnels.sh
     setupRemoteWebLink.sh
   scripts
-    alias_adder.sh	
+    alias_adder.sh
     gimme.sh
     open_jira.sh
     showBMPProducts.php

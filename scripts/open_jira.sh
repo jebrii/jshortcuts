@@ -2,7 +2,6 @@
 
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resource file(s)
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
@@ -37,13 +36,12 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
     r) filter+="reported";;
     o) filter+="open";;
     :)
-			echo -e "${RED}ERROR: Missing argument for $OPTARG${NC}" >&2
+			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
 			cat "$JSHOR/resources/.help_pages/open_jira_help.txt"
 			exit 1
 			;;
     \?)
-      # bad option given
-      echo "Invalid option: -$OPTARG" >&2
+      echo -e "${RED}Invalid option: -$OPTARG.${NC}" >&2
       exit 1
       ;;
   esac
@@ -63,7 +61,7 @@ case $filter in
   "")
     ;;
   *)
-    echo -e "${RED}ERROR: Please select only one filter flag${NC}" >&2
+    echo -e "${RED}ERROR: Please select only one filter flag.${NC}" >&2
     exit 1
     ;;
 esac

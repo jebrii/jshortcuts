@@ -2,7 +2,6 @@
 
 source "/Users/henryr/.bash_profile"
 
-# sanitize and source resourve file(s)
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
@@ -21,7 +20,6 @@ fi
 
 # TODO: write a getopts
 
-# assign variables after options are parsed
 subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
 if [ -z "$subnet" ] 2>/dev/null; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
