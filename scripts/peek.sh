@@ -1,13 +1,18 @@
 #! /bin/bash
 
+source "/Users/henryr/.bash_profile"
+
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
-if [ $# -eq 2 ] ; then
-	cmd='-t "'$2'; bash -l"'
-	echo "cmd = \"$cmd\""
-else
-	cmd=""
+if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
+	ip=$1
+	shift
+	if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null ; then
+		cmd='-t "'$2'; bash -l"'
+		echo "cmd = \"$cmd\""
+		shift
+	fi
 fi
 
 # TODO: write a getopts that changes above values
@@ -18,7 +23,7 @@ if [ -z "$subnet" ]; then
 	exit 1
 fi
 
-if [ $ip -ge 2 -a $ip -le 255 ]; then
+if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 	while true; do
 		ping -c 1 $subnet.$ip
 		if [ $? -eq 0 ]; then
@@ -29,5 +34,5 @@ if [ $ip -ge 2 -a $ip -le 255 ]; then
 	done
 	open -a "Google Chrome" "http://$subnet.$ip"
 else
-	echo -e "${RED}ERROR: Value provided is not a valid number.${NC}" >&2
+	echo -e "${RED}ERROR: Please provide a valid IP octet.${NC}" >&2
 fi
