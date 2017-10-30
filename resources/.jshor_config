@@ -18,7 +18,7 @@ iface='' # scan all ifaces
 user='root'
 dest="."
 
-dag_pages=( 'Zuul/native' 'Zuul/zuulServer?cmd=get_labels' 'Zuul/zuulServer?cmd=discovery')
+dag_pages=( 'Zuul/native' 'Zuul/zuulServer?cmd=get_status' 'Zuul/zuulServer?cmd=get_labels' 'Zuul/zuulServer?cmd=discovery')
 
 # aliasAdder
 

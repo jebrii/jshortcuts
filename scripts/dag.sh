@@ -6,7 +6,7 @@ config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_confi
 eval "$config_vars"
 
 # local variables
-
+addons=""
 
 if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
 	ip=$1
@@ -28,7 +28,7 @@ fi
 
 if [ "$ip" != "" -a $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 	for i in ${dag_pages[@]}; do
-		open -a "Google Chrome" "http://$subnet.$ip/$i"
+		open -a "Google Chrome" $addons"http://$subnet.$ip/$i"
 	done
 else
 	echo -e "${RED}ERROR: Please provide a valid IP.${NC}" >&2
