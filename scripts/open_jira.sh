@@ -6,8 +6,9 @@ config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_confi
 eval "$config_vars"
 
 # local variables
-addons=""
+addons="-F "
 filter=""
+args_flag=""
 
 if [ $# -eq 0 ]; then
   echo "No arguments provided. Opening JIRA homepage."
@@ -31,7 +32,11 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
     c) browser="Google Chrome";;
     f) browser="Firefox";;
     b) browser=$OPTARG;;
-    N) addons="-n ";;
+    N)
+      # addons+="-n "
+      # args_flag="--args "
+      echo -e "${WHITE}The new tab feature is currently deprecated.${NC}"
+      ;;
     s) at_server="$OPTARG";;
     r) filter+="reported";;
     o) filter+="open";;
@@ -50,12 +55,12 @@ done
 case $filter in
   reported)
     echo "Opening Reported by Me filter"
-    open -a "$browser" $addons"https://$at_server.atlassian.net/secure/IssueNavigator.jspa?jql=reporter%20%3D%20currentUser%28%29%20order%20by%20created%20DESC"
+    open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/secure/IssueNavigator.jspa?jql=reporter%20%3D%20currentUser%28%29%20order%20by%20created%20DESC"
     exit 0
     ;;
   open)
     echo "Opening My Open Issues filter"
-    open -a "$browser" $addons"https://$at_server.atlassian.net/secure/IssueNavigator.jspa?jql=assignee%20%3D%20currentUser%28%29%20AND%20resolution%20%3D%20Unresolved%20order%20by%20updated%20DESC"
+    open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/secure/IssueNavigator.jspa?jql=assignee%20%3D%20currentUser%28%29%20AND%20resolution%20%3D%20Unresolved%20order%20by%20updated%20DESC"
     exit 0
     ;;
   "")
@@ -68,7 +73,7 @@ esac
 
 if [ $ticket -gt 0 ] 2>/dev/null && [ $ticket -le 9999999 ]; then
   echo "Opening ticket $proj-$ticket with browser: $browser"
-  open -a "$browser" $addons"https://$at_server.atlassian.net/browse/$proj-$ticket"
+  open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/browse/$proj-$ticket"
 else
   echo -e "${RED}ERROR: \"$ticket\" is not valid. Please enter a valid ticket number between 1 and 999999.${NC}" >&2
   exit 1
