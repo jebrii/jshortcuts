@@ -5,6 +5,9 @@ source "/Users/henryr/.bash_profile"
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
 
+# local variables
+set_default='false'
+
 if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
 	ip=$1
 	shift
@@ -17,7 +20,11 @@ fi
 
 # TODO: write a getopts that changes above values
 
-subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ $set_default = 'true' ]; then
+	subnet=$default_subnet
+else
+	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1

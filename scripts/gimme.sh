@@ -10,6 +10,7 @@ eval "$config_vars"
 # local variables
 ip=0
 reverse="false"
+set_default='false'
 
 if [ -n $1 -a ${1:0:1} != "-" ]; then
 	ip=$1
@@ -20,7 +21,7 @@ if [ -n $1 -a ${1:0:1} != "-" ]; then
   fi
 fi
 
-while getopts ":ht:s:i:kf:d:r" opt; do
+while getopts ":ht:s:i:kf:d:rD" opt; do
 	case $opt in
 		h)
 		cat "$JSHOR/resources/.help_pages/gimme_help.txt"
@@ -50,6 +51,7 @@ while getopts ":ht:s:i:kf:d:r" opt; do
     f) file="$OPTARG";;
 		d) dest="$OPTARG";;
     r) reverse="true";;
+		D) set_default='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
 			cat "$JSHOR/resources/.help_pages/gimme_help.txt"
@@ -62,7 +64,11 @@ while getopts ":ht:s:i:kf:d:r" opt; do
 	esac
 done
 
-subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ $set_default = 'true' ]; then
+	subnet=$default_subnet
+else
+	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1

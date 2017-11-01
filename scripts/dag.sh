@@ -7,6 +7,7 @@ eval "$config_vars"
 
 # local variables
 addons=""
+set_default='false'
 
 if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
 	ip=$1
@@ -20,7 +21,11 @@ fi
 
 # TODO: write a getopts
 
-subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ $set_default = 'true' ]; then
+	subnet=$default_subnet
+else
+	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+fi
 if [ -z "$subnet" ] 2>/dev/null; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1

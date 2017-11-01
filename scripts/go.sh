@@ -7,6 +7,7 @@ eval "$config_vars"
 
 # local variables
 ip=0
+set_default='false'
 
 if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
 	ip=$1
@@ -18,7 +19,7 @@ if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
 	fi
 fi
 
-while getopts ":ht:s:i:k:" opt; do
+while getopts ":ht:s:i:k:D" opt; do
 	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
 		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
 		cat "$JSHOR/resources/.help_pages/go_help.txt"
@@ -49,6 +50,7 @@ while getopts ":ht:s:i:k:" opt; do
 			fi
 			;;
 		k) ssh_key_gw="$OPTARG";;
+		D) set_default='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
 			cat "$JSHOR/resources/.help_pages/go_help.txt"
@@ -61,7 +63,11 @@ while getopts ":ht:s:i:k:" opt; do
 	esac
 done
 
-subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+if [ $set_default = 'true' ]; then
+	subnet=$default_subnet
+else
+	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
 	exit 1
