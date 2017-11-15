@@ -9,7 +9,7 @@ eval "$config_vars"
 addons="-F "
 
 if [ "${1:0:1}" != "-" ] ; then
-  query=$1
+  query="$1"
   shift
 fi
 

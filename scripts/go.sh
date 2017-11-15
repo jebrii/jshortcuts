@@ -9,11 +9,11 @@ eval "$config_vars"
 ip=0
 set_default='false'
 
-if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
-	ip=$1
+if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
+	ip="$1"
 	shift
-	if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null ; then
-		iface=$1
+	if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null ; then
+		iface="$1"
 		snIndex=0
 		shift
 	fi

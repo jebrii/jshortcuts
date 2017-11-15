@@ -17,7 +17,7 @@ if [ $# -eq 0 ]; then
 fi
 
 if [ "${1:0:1}" != "-" ] ; then
-  ticket=$1
+  ticket="$1"
   shift
 fi
 

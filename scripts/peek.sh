@@ -8,11 +8,11 @@ eval "$config_vars"
 # local variables
 set_default='false'
 
-if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null; then
-	ip=$1
+if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
+	ip="$1"
 	shift
-	if [ -n $1 -a ${1:0:1} != "-" ] 2>/dev/null ; then
-		cmd='-t "'$2'; bash -l"'
+	if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null ; then
+		cmd='-t "'$1'; bash -l"'
 		echo "cmd = \"$cmd\""
 		shift
 	fi

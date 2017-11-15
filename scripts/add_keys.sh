@@ -7,10 +7,10 @@ eval "$config_vars"
 
 # local variables
 error=""
-keys=($(eval "ls -1A $ssh_keys | grep -v [*\.*]"))
+keys=($(eval "ls -1A "$ssh_keys" | grep -v [*\.*]"))
 
-for i in ${keys[@]}; do
-  ssh-add -K $ssh_keys/$i 2>/dev/null
+for i in "${keys[@]}"; do
+  ssh-add -K "$ssh_keys/$i" 2>/dev/null
   if [ $? -eq 0 ]; then
     echo -e "${CYAN}Added $i to keychain.${NC}"
   else

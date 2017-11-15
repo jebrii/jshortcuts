@@ -12,11 +12,11 @@ ip=0
 reverse="false"
 set_default='false'
 
-if [ -n $1 -a ${1:0:1} != "-" ]; then
-	ip=$1
+if [ -n "$1" -a "${1:0:1}" != "-" ]; then
+	ip="$1"
   shift
-  if [ -n $1 -a ${1:0:1} != "-" ]; then
-    file=$1
+  if [ -n "$1" -a "${1:0:1}" != "-" ]; then
+    file="$1"
     shift
   fi
 fi
@@ -88,6 +88,7 @@ if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 		read file
 	fi
   if [ $reverse == "true" ]; then
+		echo "reverse, reverse!!"
     scp -i $ssh_key_gw $file "$user@$subnet.$ip:$dest"
   else
      scp -i $ssh_key_gw "$user@$subnet.$ip:$file" $dest

@@ -8,11 +8,11 @@ eval "$config_vars"
 # local variables
 remove=false
 
-if [ -n $1 -a ${1:0:1} != "-" ]; then
-	al_ip=$1
+if [ -n "$1" -a "${1:0:1}" != "-" ]; then
+	al_ip="$1"
 	shift
-	if [ -n $1 -a ${1:0:1} != "-" ]; then
-		al_iface=$1
+	if [ -n "$1" -a "${1:0:1}" != "-" ]; then
+		al_iface="$1"
 		shift
 	fi
 fi
