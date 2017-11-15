@@ -12,8 +12,8 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 	ip="$1"
 	shift
 	if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null ; then
-		cmd='-t "'$1'; bash -l"'
-		echo "cmd = \"$cmd\""
+		uri='-t "'$1'; bash -l"'
+		echo "uri = \"$uri\""
 		shift
 	fi
 fi
@@ -39,7 +39,7 @@ if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
 			sleep 30
 		fi
 	done
-	open -a "Google Chrome" "http://$subnet.$ip"
+	open -a "Google Chrome" "http://$subnet.$ip/$uri"
 else
 	echo -e "${RED}ERROR: Please provide a valid IP octet.${NC}" >&2
 fi
