@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source "/Users/henryr/.bash_profile"
+source "/Users/${USER}/.bash_profile"
 
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
@@ -32,10 +32,11 @@ while getopts ":ht:s:i:k:D" opt; do
 			;;
 		t) cmd="-t $OPTARG; bash -l";;
 		s)
-			if [ $OPTARG =~ '^[0-9]+$' ] 2>/dev/null; then
+			if [[ $OPTARG =~ ^[0-9]+$ ]] 2>/dev/null; then
 				snIndex=$OPTARG
 			else
-				echo -e "${RED}ERROR: Subnet index must be a positive integer.${NC}" >&2
+				echo -e "${RED}ERROR: Subnet index: '$OPTARG' must be a positive integer.${NC}" >&2
+
 				exit 1
 			fi
 			;;
