@@ -3,10 +3,10 @@
 
 # user specific
 
-ssh_key_gw='/Users/henryr/.ssh/keys/candi'
-ssh_key_cloud='/Users/henryr/.ssh/keys/gcloud_key'
-ssh_key_comp='/Users/henryr/.ssh/keys/id_rsa'
-ssh_keys='/Users/henryr/.ssh/keys/'
+ssh_key_gw='/Users/hraschke/.ssh/keys/candi4k'
+ssh_key_cloud='/Users/hraschke/.ssh/keys/altair_rsa_key'
+ssh_key_comp='/Users/hraschke/.ssh/keys/id_rsa'
+ssh_keys='/Users/hraschke/.ssh/keys/'
 
 default_subnet='10.38.0'
 

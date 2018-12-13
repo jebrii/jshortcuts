@@ -19,7 +19,7 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 	fi
 fi
 
-while getopts ":ht:s:i:k:D" opt; do
+while getopts ":ht:s:i:k:nD" opt; do
 	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
 		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
 		cat "$JSHOR/resources/.help_pages/go_help.txt"
@@ -52,6 +52,7 @@ while getopts ":ht:s:i:k:D" opt; do
 			;;
 		k) ssh_key_gw="$OPTARG";;
 		D) set_default='true';;
+		n) no_ping='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
 			cat "$JSHOR/resources/.help_pages/go_help.txt"
@@ -75,14 +76,19 @@ if [ -z "$subnet" ]; then
 fi
 
 if [ $ip -ge 2 -a $ip -le 255 ] 2>/dev/null; then
-	while true; do
-		ping -c 1 $subnet.$ip
-		if [ $? -eq 0 ]; then
-			break
-		else
-			sleep 30
-		fi
-	done
+	if [ ! $no_ping ]; then
+		while true; do
+			ping -c 1 $subnet.$ip
+			if [ $? -eq 0 ]; then
+				break
+			else
+				sleep 30
+			fi
+		done
+	fi
+  echo ""
+	echo "ssh user: $user, server: $subnet.$ip, key: $ssh_key_gw"
+	echo ""
 	eval "ssh $user@$subnet.$ip -i $ssh_key_gw $cmd"
 else
 	echo "Please give me a valid ip!"

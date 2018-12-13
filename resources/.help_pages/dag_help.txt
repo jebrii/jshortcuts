@@ -1,1 +1,13 @@
-Diagnostic Page Opener help page
+NAME
+     dag -- Open diagnostic pages for a SmartEdge Gateway.
+
+SYNOPSIS
+     dag [ip address] [interface]
+
+DESCRIPTION
+     Use dag to quickly access the diagnostic pages for an Altair Engineering
+     SmartEdge Gateway that is on your local LAN.
+
+     Does not support options at this time (though this is slated for future
+     changes). Configure the endpoint for diagnostic pages in
+     $JSHOR/resources/.jshor_config.

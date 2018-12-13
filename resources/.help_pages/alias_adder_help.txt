@@ -1,17 +1,35 @@
-Alias Adder help page
+NAME
+     ala -- Quickly manage aliases for specific network interface.
 
+SYNOPSIS
+     ala [ip address] [interface] [-hr] [-i interface] [-a ip address] [-n netmask]
 
-(from the script)
+DESCRIPTION
+     Use ala to quickly add remove an IPv4 alias for a specific network interface.
+     This can be helpful to communicate with devices that use static IP addresses
+     and are configured with an address that does not appear on your current LAN.
 
-echo -ne $CYAN
-echo ''
-echo 'aliasAdd: Used to quickly set an alias to a network interface.'
-echo ''
-echo 'Usage: aliasAdd [aliasIP] [-i:a:n:rh] [parameters]'
-echo ''
-echo "-h for help"
-echo "-i to set interface (e.g. \"$interface\")"
-echo "-a to set alias IP (e.g. \"$aliasIP\")"
-echo "-n to set netmask (e.g. \"$netmask\")"
-echo "-r to specify remove of alias (rather than add)"
-echo -ne $NC
+     Often, this is the case for IoT devices (relays, meters, sensors, BACnet &
+     ModBus bridges, etc.) that come out-of-the box with a specific IP, but can
+     be reached with an alias, or with hardware that is staged for shipment to
+     the field.
+
+     The options are as follows:
+
+     -i interface
+             Sets the interface on which to create an alias, e.g., "en0". The
+             default for this can be set in the .jshor_config file.
+
+     -a ip address
+             Sets the IPv4 address of the alias to create. The default
+             for this can be set in the .jshor_config file.
+
+     -n netmask
+             Sets the IPv4 netmask of the alias to create. The default
+             for this can be set in the .jshor_config file.
+
+     -r      Sets the remove flag. If this option is passed, an alias will
+             be removed if it matches the ip addresss and interface specified.
+             If the ip address and interface do no match, no alias will be added.
+
+     -h      Shows the help page. Seems you've already figured that one out.

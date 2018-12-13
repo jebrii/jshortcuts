@@ -1,0 +1,13 @@
+NAME
+     addkeys -- Automatically ssh-add keys.
+
+SYNOPSIS
+     addkeys
+
+DESCRIPTION
+     Use addkeys to quickly add ssh keys to your keychain. This is
+     especially useful when it's not secure or possible to keep
+     keys permanently in your keychain.
+
+     Does not support options. Configure destination for keys in
+     $JSHOR/resources/.jshor_config.

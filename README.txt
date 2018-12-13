@@ -1,9 +1,9 @@
 # jshortcuts
-Some fun bash tools to improve my workflow.
+Some fun bash tools to improve one's workflow.
 
 This is the jebri-shortcuts pack. I make fun little scripts to make your work quicker!
 
-Most of these were built specifically for the Candi QA/Field Ops user.
+Most of these were built specifically for the Altair Engineering QA/Field Ops user.
 
 Make certain the jshortcuts folder is in your home directory (~/ or /Users/[yourUser]/)
 
@@ -20,6 +20,8 @@ Here's an example of some lines you might want to add to your ~/.bash_profile
 # Globals
 
 JSHOR='/Users/[your-user]/jshortcuts'
+
+# Pretty colors
 
 RED='\033[0;31m'
 BLUE='\033[0;34m'
@@ -46,8 +48,11 @@ source "$JSHOR/resources/aliases.sh"
 
 ----------------------------------------------------
 
-After you edit your bash profile, make certain to run "source ~/.bash_profile" to make
-certain the aliases are committed
+After you edit your bash profile, make certain to run "source ~/.bash_profile"
+to make certain the aliases are committed.
+
+Be certain to check out the resources/.jshor_config file and set up defaults
+specific to your environment.
 
 As of the authorship of this readme, the directory structure is as follows:
 
@@ -71,3 +76,7 @@ jshortcuts
     open_jira.sh
     peek.sh
     showBMPProducts.php
+
+
+Disclaimer: This is my first library of scripts. I didn't follow any particular
+standard for directory structure or known best practice.

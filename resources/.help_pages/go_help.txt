@@ -1,1 +1,61 @@
-go help page
+NAME
+     go -- Quickly ssh into another computer.
+
+SYNOPSIS
+     go   ip address [source file] [-hnD] [-s subnet index] [-i interface]
+          [-t command] [-k ssh key]
+
+DESCRIPTION
+     Use go to ssh into other computers via their IPv4 address. This is helpful
+     when you are frequently ssh'ing into different devices on the same network.
+     Most often, go is passed a single parameter, the final octet of the IP address
+     for the computer you wish to ssh into. This prevents you from having to type
+     out a whole command, e.g., "go 99" instead of "ssh root@192.168.1.99 -i
+     /path/to/ssh/key".
+
+     Fo uses resources/findSubnet.sh to identify the current subnet of your computer
+     and automatically fill in the first three octets of the IPv4 address for the
+     computer you want to ssh into.
+
+     Go has the added feature of pinging the indicated IP address prior to initiating
+     an ssh connection. This can help to verify the address and expedite the process
+     of reconnecting to a remote machine after reboot. If the remote machine does
+     not respond to pings, pass the -n flag to skip the ping.
+
+     The options are as follows:
+
+     ip address
+             Sets the IP address of the computer to ssh into. It is common to enter
+             only the last octet (an integer between 0 and 255) and use subnet index
+             and/or interface options to automatically retrieve the first three
+             octets.
+
+     -s subnet index
+             Sets the subnet index to use. This uses jebri shortcuts'
+             resources/findSubnet.sh script to determine the first three octets of
+             the IP address to ssh into, appending the final octet if only a single
+             octet is passed for the IP address option. The default can be changed
+             in the .jshor_config file.
+
+             "1" is the default option for this, as it skips the loopback interface,
+             which is often at subnet index 0. If you have multiple interfaces or
+             multiple IP addresses for an interface and want to use a latter one,
+             increase this subnet index.
+
+     -i interface
+             Sets the interface to use. This narrows the subnets that are
+             iterated through in the resources/findSubnet.sh script. Using this
+             in conjunction with the subnet index flag will ensure you have the
+             correct subnet.
+
+     -t command
+             Specifies a command to execute upon establishing an ssh connection
+             to the remote machine.
+
+     -n      Sets the "no-ping" flag.
+
+             If this option is passed, the initial ping to verify that the remote
+             machine is online will be skipped and an ssh connection will be
+             initiated immediately.
+
+     -h      Shows the help page. Seems you've already figured that one out.

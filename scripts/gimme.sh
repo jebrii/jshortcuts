@@ -2,7 +2,7 @@
 
 #! /bin/bash
 
-source "/Users/henryr/.bash_profile"
+source "/Users/${USER}/.bash_profile"
 
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
@@ -25,6 +25,7 @@ while getopts ":ht:s:i:kf:d:rD" opt; do
 	case $opt in
 		h)
 		cat "$JSHOR/resources/.help_pages/gimme_help.txt"
+		echo ""
 		exit 0
 			;;
 		t) cmd="-t $OPTARG; bash -l";;

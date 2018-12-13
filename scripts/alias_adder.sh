@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source "/Users/henryr/.bash_profile"
+source "/Users/${USER}/.bash_profile"
 
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"

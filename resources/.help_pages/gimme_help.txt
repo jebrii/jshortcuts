@@ -1,1 +1,64 @@
-gimme help page
+NAME
+     gimme -- Quickly scp files to or from another computer.
+
+SYNOPSIS
+     gimme   ip address [source file] [-hkrD] [-s subnet index] [-i interface]
+             [-f source file] [-d file destination]  [-t command]
+
+DESCRIPTION
+     Use gimme to send or retrieve files from other servers using secure shell
+     copy (scp). To do this, you will need to know the paths of the source and
+     destination for the file or directory you intend to copy. Tab auto-complete
+     is not supported at this time.
+
+     The options are as follows:
+
+     ip address
+             Sets the IP address of the computer to ssh into. It is common to enter
+             only the last octet (an integer between 0 and 255) and use subnet index
+             and/or interface options to automatically retrieve the first three
+             octets.
+
+     -s subnet index
+             Sets the subnet index to use. This uses jebri shortcuts'
+             resources/findSubnet.sh script to determine the first three octets of
+             the IP address to ssh into, appending the final octet if only a single
+             octet is passed for the IP address option. The default can be changed
+             in the .jshor_config file.
+
+             "1" is the default option for this, as it skips the loopback interface,
+             which is often at subnet index 0. If you have multiple interfaces or
+             multiple IP addresses for an interface and want to use a latter one,
+             increase this subnet index.
+
+     -i interface
+             Sets the interface to use. This narrows the subnets that are
+             iterated through in the resources/findSubnet.sh script. Using this
+             in conjunction with the subnet index flag will ensure you have the
+             correct subnet.
+
+     -f source file
+             Indicates the path to the file you want to copy.
+
+             Normally, this is a file on your local machine. If the reverse flag
+             is set, it is instead a file on the remote machine.
+
+     -d file destination
+             Indicates the path to the destination to which you want to copy the
+             selected file.
+
+             This is normally a destination path on the remote machine. If the
+             reverse flag is set, it is instead a destination on your local machine.
+
+     -t command
+             Specifies a command to execute upon establishing an ssh connection
+             to the remote machine. I'm actually not certain whether this works
+             at the time of writing this.
+
+     -r      Sets the reverse flag.
+
+             If this option is passed, the source file will instead be expected
+             to be a file or directory on the remote machine and the destination
+             will be a path on your local machine (normally, the other way around).
+
+     -h      Shows the help page. Seems you've already figured that one out.

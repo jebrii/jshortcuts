@@ -1,6 +1,6 @@
 #! /bin/bash
 
-source "/Users/henryr/.bash_profile"
+source "/Users/${USER}/.bash_profile"
 
 config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
 eval "$config_vars"
@@ -19,6 +19,11 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 	fi
 fi
 
+if [ -n "$1" -a "$1" = -h ] 2>/dev/null; then
+	cat "$JSHOR/resources/.help_pages/dag_help.txt"
+	echo ""
+	exit 0
+fi
 # TODO: write a getopts
 
 if [ $set_default = 'true' ]; then
