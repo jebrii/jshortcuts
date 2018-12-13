@@ -1,1 +1,12 @@
-peek help page
+NAME
+     peek -- Opens browser to an IP address.
+
+SYNOPSIS
+     peek  ip address
+
+DESCRIPTION
+     Use peek to quickly open a webpage to an IPv4 address. This is useful when
+     you are working with devices or computers that serve up web interfaces,
+     such as web-controlled IoT meters, relays, cameras, sensors, etc.
+
+     Does not support options. Configure defaults in resources/.jshor_config.

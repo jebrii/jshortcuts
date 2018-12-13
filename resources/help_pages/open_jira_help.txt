@@ -1,18 +1,47 @@
-JIRA Ticket Opener help page
+NAME
+     jira -- Quickly open a jira ticket in your browser.
 
-(from script)
+SYNOPSIS
+     jira  [ticket number] [-hcfNro] [-b browser] [-s confluence cloud server]
+           [-p JIRA project] [-t ticket]
 
-echo "This is the help script for openJIRAticket.sh by jebri...."
-echo "..."
-echo "...or rather it will be"
-echo ""
-echo "-h for help"
-echo "-p to set project (e.g. \"-p CANDI\")"
-echo "-c to open with Google Chrome"
-echo "-f to open with Firefox"
-echo "-b to set the browser manually (enter text string of browser application on your machine)"
-echo "-t sets the ticket"
-echo "-N opens the ticket in a new window"
-echo ""
-echo "This script can be run without any options and requires only the argument of the ticket desired."
-echo "If only the ticket number is provided, it will default to project CANDI and browser Google Chrome."
+DESCRIPTION
+     Use jira to quickly open up the Atlassian JIRA Cloud application with
+     a browser. Jira is often used with simply the ticket number (e.g.,
+     "jira 12345").
+
+     If passed without any options, jira will simply open the JIRA homepage.
+
+     The options are as follows:
+
+     ticket number
+             The number for the ticket you'd like to open. For example, for a
+             ticket named "PROJ-12345", this would simply be "12345" (as project
+             is specified in resources/.jshor_config) or with the -p option.
+
+     -b browser
+             A string that indicates the name your computer uses for a browser,
+             e.g., "Google Chrome" (quotes required for two-word strings),
+             "Safari", or "Firefox".
+
+     -s confluence cloud server
+             Indicates the first portion of the URL to go to, which differentiates
+             Atlassian cloud instances, for example, the "server-address" of
+             "https://server-address.atlassian.net/wiki".
+
+     -p JIRA project
+             The all-caps abbreviation for your JIRA project. For example, for a
+             ticket named "PROJ-12345", this would be "PROJ".
+
+     -t ticket number
+             If not passed as the first option, the ticket number can also be
+             passed with this option flag.
+
+     -c      Sets the browser option to "Google Chrome".
+
+     -f      Sets the browser option to "Firefox".
+
+     -N      Specifies that the browser should open the page in a new window, rather
+             than a new tab.
+
+     -h      Shows the help page. Seems you've already figured that one out.

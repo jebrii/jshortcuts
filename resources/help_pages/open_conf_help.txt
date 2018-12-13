@@ -1,0 +1,34 @@
+NAME
+     conf -- Quickly open a confluence page in your browser.
+
+SYNOPSIS
+     conf  [query] [-hcfN] [-b browser] [-s confluence cloud server address]
+
+DESCRIPTION
+     Use conf to quickly open up the Atlassian Confluence Cloud application with
+     a browser. Either pass a query to search for a page, or omit a query to go
+     to the Confluence home page for you organization.
+
+     The options are as follows:
+
+     query
+             A query to search for articles in Confluence.
+
+     -b browser
+             A string that indicates the name your computer uses for a browser,
+             e.g., "Google Chrome" (quotes required for two-word strings),
+             "Safari", or "Firefox".
+
+     -s confluence cloud server address
+             Indicates the first portion of the URL to go to, which differentiates
+             Atlassian cloud instances, for example, the "server-address" of
+             "https://server-address.atlassian.net/wiki".
+
+     -c      Sets the browser option to "Google Chrome".
+
+     -f      Sets the browser option to "Firefox".
+
+     -N      Specifies that the browser should open the page in a new window, rather
+             than a new tab.
+
+     -h      Shows the help page. Seems you've already figured that one out.
