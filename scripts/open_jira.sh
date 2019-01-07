@@ -21,7 +21,7 @@ if [ "${1:0:1}" != "-" ] ; then
   shift
 fi
 
-while getopts ":hp:t:cfb:Ns:ro" opt; do
+while getopts ":hp:t:cfb:Ns:Bro" opt; do
   case $opt in
     h)
       cat "$JSHOR/resources/.help_pages/open_jira_help.txt"
@@ -38,6 +38,7 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
       echo -e "${WHITE}The new tab feature is currently deprecated.${NC}"
       ;;
     s) at_server="$OPTARG";;
+    B) filter+="board";;
     r) filter+="reported";;
     o) filter+="open";;
     :)
@@ -53,6 +54,11 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
 done
 
 case $filter in
+  board)
+    echo "Opening Rapid Board"
+    open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/secure/RapidBoard.jspa"
+    exit 0
+    ;;
   reported)
     echo "Opening Reported by Me filter"
     open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/secure/IssueNavigator.jspa?jql=reporter%20%3D%20currentUser%28%29%20order%20by%20created%20DESC"

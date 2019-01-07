@@ -2,7 +2,7 @@ NAME
      jira -- Quickly open a jira ticket in your browser.
 
 SYNOPSIS
-     jira  [ticket number] [-hcfNro] [-b browser] [-s confluence cloud server]
+     jira  [ticket number] [-hcfNroB] [-b browser] [-s confluence cloud server]
            [-p JIRA project] [-t ticket]
 
 DESCRIPTION
@@ -43,5 +43,11 @@ DESCRIPTION
 
      -N      Specifies that the browser should open the page in a new window, rather
              than a new tab.
+
+     -B      Opens the Rapid Board for your team.
+
+     -o      Opens the "My Open Tickets" filter.
+
+     -r      Opens a filter of tickets recently reported by you.
 
      -h      Shows the help page. Seems you've already figured that one out.
