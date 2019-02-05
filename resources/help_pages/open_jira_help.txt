@@ -24,10 +24,10 @@ DESCRIPTION
              e.g., "Google Chrome" (quotes required for two-word strings),
              "Safari", or "Firefox".
 
-     -s confluence cloud server
+     -s JIRA cloud server
              Indicates the first portion of the URL to go to, which differentiates
              Atlassian cloud instances, for example, the "server-address" of
-             "https://server-address.atlassian.net/wiki".
+             "https://server-address.atlassian.net/".
 
      -p JIRA project
              The all-caps abbreviation for your JIRA project. For example, for a
