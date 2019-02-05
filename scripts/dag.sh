@@ -20,7 +20,7 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 fi
 
 if [ -n "$1" -a "$1" = -h ] 2>/dev/null; then
-	cat "$JSHOR/resources/.help_pages/dag_help.txt"
+	cat "$JSHOR/resources/help_pages/dag_help.txt"
 	echo ""
 	exit 0
 fi

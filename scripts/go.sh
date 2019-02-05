@@ -22,12 +22,12 @@ fi
 while getopts ":ht:s:i:k:nD" opt; do
 	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
 		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
-		cat "$JSHOR/resources/.help_pages/go_help.txt"
+		cat "$JSHOR/resources/help_pages/go_help.txt"
 		exit 1
 	fi
 	case $opt in
 		h)
-			cat "$JSHOR/resources/.help_pages/go_help.txt"
+			cat "$JSHOR/resources/help_pages/go_help.txt"
 			exit 0
 			;;
 		t) cmd="-t $OPTARG; bash -l";;
@@ -55,7 +55,7 @@ while getopts ":ht:s:i:k:nD" opt; do
 		n) no_ping='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/resources/.help_pages/go_help.txt"
+			cat "$JSHOR/resources/help_pages/go_help.txt"
 			exit 1
 			;;
 		\?)

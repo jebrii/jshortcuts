@@ -16,7 +16,7 @@ fi
 while getopts ":hp:t:cfb:Ns:ro" opt; do
   case $opt in
     h)
-      cat "$JSHOR/resources/.help_pages/open_conf_help.txt"
+      cat "$JSHOR/resources/help_pages/open_conf_help.txt"
       exit 0
       ;;
     c) browser="Google Chrome";;
@@ -30,7 +30,7 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
     s) at_server="$OPTARG";;
     :)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/resources/.help_pages/open_jira_help.txt"
+			cat "$JSHOR/resources/help_pages/open_jira_help.txt"
 			exit 1
 			;;
     \?)

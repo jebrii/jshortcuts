@@ -24,7 +24,7 @@ fi
 while getopts ":ht:s:i:kf:d:rD" opt; do
 	case $opt in
 		h)
-		cat "$JSHOR/resources/.help_pages/gimme_help.txt"
+		cat "$JSHOR/resources/help_pages/gimme_help.txt"
 		echo ""
 		exit 0
 			;;
@@ -55,7 +55,7 @@ while getopts ":ht:s:i:kf:d:rD" opt; do
 		D) set_default='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/resources/.help_pages/gimme_help.txt"
+			cat "$JSHOR/resources/help_pages/gimme_help.txt"
 			exit 1
 			;;
 		\?)
