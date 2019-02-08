@@ -10,6 +10,8 @@ addons="-F "
 filter=""
 args_flag=""
 
+more_tickets=0;
+
 if [ $# -eq 0 ]; then
   echo "No arguments provided. Opening JIRA homepage."
   open -a "$browser" $addons"https://$at_server.atlassian.net/"
@@ -19,6 +21,23 @@ fi
 if [ "${1:0:1}" != "-" ] ; then
   ticket="$1"
   shift
+  if [ -n $1 ] && [ "${1:0:1}" != "-" ] ; then
+    more_tickets=1
+    tickets[0]=$ticket;
+    count=1
+    while [ -n "$1" ] && [ "${1:0:1}" != "-" ] ; do
+      tickets[$count]="$1"
+      count=$((count + 1))
+      if [ -n "$2" ] ; then
+        shift
+      else
+        break
+      fi
+      if [ $count -gt 50 ] ; then
+        break
+      fi
+    done
+  fi
 fi
 
 while getopts ":hp:t:cfb:Ns:Bro" opt; do
@@ -77,11 +96,26 @@ case $filter in
     ;;
 esac
 
-if [ $ticket -gt 0 ] 2>/dev/null && [ $ticket -le 9999999 ]; then
-  echo "Opening ticket $proj-$ticket with browser: $browser"
-  open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/browse/$proj-$ticket"
+if [ $more_tickets -eq 0 ] ; then
+  if [ $ticket -gt 0 ] 2>/dev/null && [ $ticket -le 9999999 ]; then
+    echo "Opening ticket $proj-$ticket with browser: $browser"
+    open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/browse/$proj-$ticket"
+  else
+    echo -e "${RED}ERROR: \"$ticket\" is not valid. Please enter a valid ticket number between 1 and 999999.${NC}" >&2
+    exit 1
+  fi
+elif [ $more_tickets -eq 1 ] ; then
+  for i in "${tickets[@]}" ; do
+    ticket="$i"
+    if [ $ticket -gt 0 ] 2>/dev/null && [ $ticket -le 9999999 ]; then
+      echo "Opening ticket $proj-$ticket with browser: $browser"
+      open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/browse/$proj-$ticket"
+    else
+      echo -e "${RED}ERROR: \"$ticket\" is not valid. Please enter a valid ticket number between 1 and 999999.${NC}" >&2
+    fi
+  done
 else
-  echo -e "${RED}ERROR: \"$ticket\" is not valid. Please enter a valid ticket number between 1 and 999999.${NC}" >&2
+  echo "whoops!"
   exit 1
 fi
 

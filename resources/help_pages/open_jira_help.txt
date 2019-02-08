@@ -2,7 +2,7 @@ NAME
      jira -- Quickly open a jira ticket in your browser.
 
 SYNOPSIS
-     jira  [ticket number] [-hcfNroB] [-b browser] [-s confluence cloud server]
+     jira  [...ticket number(s)] [-hcfNroB] [-b browser] [-s confluence cloud server]
            [-p JIRA project] [-t ticket]
 
 DESCRIPTION
@@ -14,8 +14,9 @@ DESCRIPTION
 
      The options are as follows:
 
-     ticket number
-             The number for the ticket you'd like to open. For example, for a
+     ticket number(s)
+             The number(s) for the ticket you'd like to open. This can be an
+             array of ticket numbers separated by spaces. For example, for a
              ticket named "PROJ-12345", this would simply be "12345" (as project
              is specified in resources/.jshor_config) or with the -p option.
 
