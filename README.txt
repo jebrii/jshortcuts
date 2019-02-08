@@ -40,7 +40,7 @@ jshortcuts
   .old
     [old/deprecated scripts]
   resources
-    .help_pages
+    help_pages
       [help pages for all scripts]
     .jshor_config
     aliases.sh
