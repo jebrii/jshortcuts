@@ -26,9 +26,10 @@ DESCRIPTION
              "Safari", or "Firefox".
 
      -s JIRA cloud server
-             Indicates the first portion of the URL to go to, which differentiates
-             Atlassian cloud instances, for example, the "server-address" of
-             "https://server-address.atlassian.net/".
+             Indicates the URL where your JIRA instance is hosted, for example,
+             if your JIRA is an atlassian instance, you might pass
+             "your-server-address.atlassian.net". It is important at this time to
+             omit "https://" as well as a trailing slash.
 
      -p JIRA project
              The all-caps abbreviation for your JIRA project. For example, for a

@@ -20,9 +20,10 @@ DESCRIPTION
              "Safari", or "Firefox".
 
      -s confluence cloud server address
-             Indicates the first portion of the URL to go to, which differentiates
-             Atlassian cloud instances, for example, the "server-address" of
-             "https://server-address.atlassian.net/wiki".
+             Indicates the URL where your Confluence instance is hosted, for
+             example, if your Confluence is an atlassian instance, you might pass
+             "your-server-address.atlassian.net". It is important at this time to
+             omit "https://" as well as a trailing slash.
 
      -c      Sets the browser option to "Google Chrome".
 

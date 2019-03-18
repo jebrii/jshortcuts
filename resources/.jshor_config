@@ -24,7 +24,7 @@ dag_pages=( 'Zuul/native' 'Zuul/zuulServer?cmd=get_status' 'Zuul/zuulServer?cmd=
 
 # aliasAdder
 
-al_iface="en0"           # Henry's wifi interface
+al_iface="en0"          # Henry's wifi interface
 al_ip="10.37.37.248"    # Preset IP for Henry on 10.37.37.0 subnet
 al_nm="255.255.255.0"   # Standard netmask
 
@@ -34,4 +34,5 @@ echo "this should not be read"
 
 proj="CANDI"
 browser="Google Chrome"
-at_server="candicontrols"
+jira_server="jira.prog.altair.com"
+conf_server="confluence.prog.altair.com"

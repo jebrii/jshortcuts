@@ -27,7 +27,7 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
       # args_flag="--args "
       echo -e "${WHITE}The new tab feature is currently deprecated.${NC}"
       ;;
-    s) at_server="$OPTARG";;
+    s) conf_server="$OPTARG";;
     :)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
 			cat "$JSHOR/resources/help_pages/open_jira_help.txt"
@@ -42,11 +42,11 @@ done
 
 if [ -n "$query" ]; then
   echo "Opening confluence with browser: $browser and search query: $query"
-  open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/wiki/dosearchsite.action?queryString=$query"
+  open $addons-a "$browser" $args_flag"https://$conf_server/dosearchsite.action?queryString=$query"
   exit 0
 else
   echo "Opening confluence homepage with browser: $browser"
-  open $addons-a "$browser" $args_flag"https://$at_server.atlassian.net/wiki"
+  open $addons-a "$browser" $args_flag"https://$conf_server"
   exit 0
 fi
 
