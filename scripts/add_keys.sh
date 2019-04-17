@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
 eval "$config_vars"
 
 # local variables

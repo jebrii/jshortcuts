@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -20,7 +20,7 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 fi
 
 if [ -n "$1" -a "$1" = -h ] 2>/dev/null; then
-	cat "$JSHOR/resources/help_pages/dag_help.txt"
+	cat "$JSHOR/src/help_pages/dag_help.txt"
 	echo ""
 	exit 0
 fi
@@ -29,7 +29,7 @@ fi
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/src/findSubnet.sh" $snIndex $iface)
 fi
 if [ -z "$subnet" ] 2>/dev/null; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

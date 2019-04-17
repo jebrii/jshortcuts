@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -23,7 +23,7 @@ fi
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/resources/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/src/findSubnet.sh" $snIndex $iface)
 fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

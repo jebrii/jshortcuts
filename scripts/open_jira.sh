@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/resources/sanitize.sh" "$JSHOR/resources/.jshor_config")
+config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -43,7 +43,7 @@ fi
 while getopts ":hp:t:cfb:Ns:Bro" opt; do
   case $opt in
     h)
-      cat "$JSHOR/resources/help_pages/open_jira_help.txt"
+      cat "$JSHOR/src/help_pages/open_jira_help.txt"
       exit 0
       ;;
     p) proj=$OPTARG;;
@@ -62,7 +62,7 @@ while getopts ":hp:t:cfb:Ns:Bro" opt; do
     o) filter+="open";;
     :)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/resources/help_pages/open_jira_help.txt"
+			cat "$JSHOR/src/help_pages/open_jira_help.txt"
 			exit 1
 			;;
     \?)

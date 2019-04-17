@@ -23,14 +23,14 @@ JSHOR='[/path/to/jshortcuts]'
 
 # Aliases
 
-source "$JSHOR/resources/aliases.sh"
+source "$JSHOR/src/aliases.sh"
 
 ----------------------------------------------------
 
 After you edit your bash profile, make certain to run "source ~/.bash_profile"
 to make certain the aliases are committed.
 
-Be certain to check out the resources/.jshor_config file and set up defaults
+Be certain to check out the src/.jshor_config file and set up defaults
 specific to your environment.
 
 As of the authorship of this readme, the directory structure is as follows:
@@ -39,7 +39,7 @@ jshortcuts
   README.txt
   .old
     [old/deprecated scripts]
-  resources
+  src
     help_pages
       [help pages for all scripts]
     .jshor_config
