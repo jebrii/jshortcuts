@@ -9,6 +9,7 @@ TODO:
 [x] Standardize error coloring
 [ ] add comments
 [ ] getopts for dag
+[ ] add a "list" (-l) feature to alias adder
 
 
-Change this all to ruby?
+Change this all to node?
