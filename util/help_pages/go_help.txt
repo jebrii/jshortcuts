@@ -13,7 +13,7 @@ DESCRIPTION
      out a whole command, e.g., "go 99" instead of "ssh root@192.168.1.99 -i
      /path/to/ssh/key".
 
-     Fo uses src/findSubnet.sh to identify the current subnet of your computer
+     Fo uses util/findSubnet.sh to identify the current subnet of your computer
      and automatically fill in the first three octets of the IPv4 address for the
      computer you want to ssh into.
 
@@ -32,7 +32,7 @@ DESCRIPTION
 
      -s subnet index
              Sets the subnet index to use. This uses jebri shortcuts'
-             src/findSubnet.sh script to determine the first three octets of
+             util/findSubnet.sh script to determine the first three octets of
              the IP address to ssh into, appending the final octet if only a single
              octet is passed for the IP address option. The default can be changed
              in the .jshor_config file.
@@ -44,7 +44,7 @@ DESCRIPTION
 
      -i interface
              Sets the interface to use. This narrows the subnets that are
-             iterated through in the src/findSubnet.sh script. Using this
+             iterated through in the util/findSubnet.sh script. Using this
              in conjunction with the subnet index flag will ensure you have the
              correct subnet.
 

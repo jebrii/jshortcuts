@@ -10,4 +10,4 @@ DESCRIPTION
 
      Does not support options at this time (though this is slated for future
      changes). Configure the endpoint for diagnostic pages in
-     $JSHOR/src/.jshor_config.
+     $JSHOR/util/.jshor_config.

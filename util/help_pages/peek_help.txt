@@ -9,4 +9,4 @@ DESCRIPTION
      you are working with devices or computers that serve up web interfaces,
      such as web-controlled IoT meters, relays, cameras, sensors, etc.
 
-     Does not support options. Configure defaults in src/.jshor_config.
+     Does not support options. Configure defaults in util/.jshor_config.

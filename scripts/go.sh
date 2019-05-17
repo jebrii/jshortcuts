@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
+config_vars=$(bash "$JSHOR/util/sanitize.sh" "$JSHOR/util/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -22,12 +22,12 @@ fi
 while getopts ":ht:s:i:k:nD" opt; do
 	if [ ${OPTARG:0:1} = "-" ] 2>/dev/null ; then
 		echo -e "${RED}ERROR: Missing argument for $opt.${NC}" >&2
-		cat "$JSHOR/src/help_pages/go_help.txt"
+		cat "$JSHOR/util/help_pages/go_help.txt"
 		exit 1
 	fi
 	case $opt in
 		h)
-			cat "$JSHOR/src/help_pages/go_help.txt"
+			cat "$JSHOR/util/help_pages/go_help.txt"
 			exit 0
 			;;
 		t) cmd="-t $OPTARG; bash -l";;
@@ -55,7 +55,7 @@ while getopts ":ht:s:i:k:nD" opt; do
 		n) no_ping='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/src/help_pages/go_help.txt"
+			cat "$JSHOR/util/help_pages/go_help.txt"
 			exit 1
 			;;
 		\?)
@@ -68,7 +68,7 @@ done
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/src/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/util/findSubnet.sh" $snIndex $iface)
 fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

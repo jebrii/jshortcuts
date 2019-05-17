@@ -4,7 +4,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
+config_vars=$(bash "$JSHOR/util/sanitize.sh" "$JSHOR/util/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -24,7 +24,7 @@ fi
 while getopts ":ht:s:i:kf:d:rD" opt; do
 	case $opt in
 		h)
-		cat "$JSHOR/src/help_pages/gimme_help.txt"
+		cat "$JSHOR/util/help_pages/gimme_help.txt"
 		echo ""
 		exit 0
 			;;
@@ -55,7 +55,7 @@ while getopts ":ht:s:i:kf:d:rD" opt; do
 		D) set_default='true';;
 		:)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/src/help_pages/gimme_help.txt"
+			cat "$JSHOR/util/help_pages/gimme_help.txt"
 			exit 1
 			;;
 		\?)
@@ -68,7 +68,7 @@ done
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/src/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/util/findSubnet.sh" $snIndex $iface)
 fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

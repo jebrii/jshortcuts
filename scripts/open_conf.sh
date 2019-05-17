@@ -2,7 +2,7 @@
 
 source "/Users/${USER}/.bash_profile"
 
-config_vars=$(bash "$JSHOR/src/sanitize.sh" "$JSHOR/src/.jshor_config")
+config_vars=$(bash "$JSHOR/util/sanitize.sh" "$JSHOR/util/.jshor_config")
 eval "$config_vars"
 
 # local variables
@@ -16,7 +16,7 @@ fi
 while getopts ":hp:t:cfb:Ns:ro" opt; do
   case $opt in
     h)
-      cat "$JSHOR/src/help_pages/open_conf_help.txt"
+      cat "$JSHOR/util/help_pages/open_conf_help.txt"
       exit 0
       ;;
     c) browser="Google Chrome";;
@@ -30,7 +30,7 @@ while getopts ":hp:t:cfb:Ns:ro" opt; do
     s) conf_server="$OPTARG";;
     :)
 			echo -e "${RED}ERROR: Missing argument for $OPTARG.${NC}" >&2
-			cat "$JSHOR/src/help_pages/open_jira_help.txt"
+			cat "$JSHOR/util/help_pages/open_jira_help.txt"
 			exit 1
 			;;
     \?)

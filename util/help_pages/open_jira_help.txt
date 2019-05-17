@@ -18,7 +18,7 @@ DESCRIPTION
              The number(s) for the ticket you'd like to open. This can be an
              array of ticket numbers separated by spaces. For example, for a
              ticket named "PROJ-12345", this would simply be "12345" (as project
-             is specified in src/.jshor_config) or with the -p option.
+             is specified in util/.jshor_config) or with the -p option.
 
      -b browser
              A string that indicates the name your computer uses for a browser,
