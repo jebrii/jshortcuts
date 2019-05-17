@@ -32,4 +32,6 @@ DESCRIPTION
              be removed if it matches the ip addresss and interface specified.
              If the ip address and interface do no match, no alias will be added.
 
+     -l      Lists aliases set up with the ala tool.
+
      -h      Shows the help page. Seems you've already figured that one out.
