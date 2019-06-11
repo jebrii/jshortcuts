@@ -53,7 +53,7 @@ You will want to change all the following variables:
 * `ssh_keys` - By default, this is your `.ssh/` folder, which usually sits in your home directory. You will want to replace "[your-user]" with your username.
 * `ssh_key_gw` - This is the path to the specific identity key you use to ssh into Gateways. Generally, this is the `candi4k` key.
 * `default_subnet` - This is the first three octets of the LAN subnet on which you operate in your office. At the Altair SmartEdge HQ, devices are addressed as "10.38.0.XXX", so mine is "10.38.0".
-* `snIndex` and `iface` - You should leave these as they are, unless you have an extra interface that you need to circumvent on your system. I will add more details in a later version.
+* `sn_index` and `iface` - You should leave these as they are, unless you have an extra interface that you need to circumvent on your system. I will add more details in a later version.
 * `user` and `dest` - These are used for ssh-ing into Gateways. You are probably an Altair team member, and so these should stay as they are. If not and you are using `go` ssh into servers as a user other than "root", then change `user` accordingly.
 * `dag_pages` - This is an array of extensions used to access standard diagnostic pages for Altair SmartEdge Gateways. Change these if you need `dag` to bring up different pages.
 * `al_iface` - This is the interface to alias with `ala` by default. This usually will be your primary network interface. By default, it's set to "en0", which (on Macs) represents your WiFi interface. If you use something else often, then change it accordingly (*hint*: To view your network interfaces, type `ifconfig` into the terminal).

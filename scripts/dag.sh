@@ -14,7 +14,7 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 	shift
 	if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null ; then
 		iface="$1"
-		snIndex=0
+		sn_index=0
 		shift
 	fi
 fi
@@ -29,7 +29,7 @@ fi
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/util/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/util/findSubnet.sh" $sn_index $iface)
 fi
 if [ -z "$subnet" ] 2>/dev/null; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

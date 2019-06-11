@@ -23,7 +23,7 @@ fi
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/util/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/util/findSubnet.sh" $sn_index $iface)
 fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2

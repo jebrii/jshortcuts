@@ -14,7 +14,7 @@ if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null; then
 	shift
 	if [ -n "$1" -a "${1:0:1}" != "-" ] 2>/dev/null ; then
 		iface="$1"
-		snIndex=0
+		sn_index=0
 		shift
 	fi
 fi
@@ -33,7 +33,7 @@ while getopts ":ht:s:i:k:nD" opt; do
 		t) cmd="-t $OPTARG; bash -l";;
 		s)
 			if [[ $OPTARG =~ ^[0-9]+$ ]] 2>/dev/null; then
-				snIndex=$OPTARG
+				sn_index=$OPTARG
 			else
 				echo -e "${RED}ERROR: Subnet index: '$OPTARG' must be a positive integer.${NC}" >&2
 
@@ -44,7 +44,7 @@ while getopts ":ht:s:i:k:nD" opt; do
 			test_if=$(ifconfig $OPTARG 2>/dev/null | cut -f 1 | cut -c1-${#OPTARG})
 			if [ "$test_if" = "$OPTARG" ]; then
 				iface="$OPTARG "
-				snIndex=0
+				sn_index=0
 			else
 				echo -e "${RED}ERROR: Invalid iface provided.${NC}" >&2
 				exit 1
@@ -68,7 +68,7 @@ done
 if [ $set_default = 'true' ]; then
 	subnet=$default_subnet
 else
-	subnet=$(bash "$JSHOR/util/findSubnet.sh" $snIndex $iface)
+	subnet=$(bash "$JSHOR/util/findSubnet.sh" $sn_index $iface)
 fi
 if [ -z "$subnet" ]; then
 	echo -e "${RED}ERROR: could not find valid subnet.${NC}" >&2
