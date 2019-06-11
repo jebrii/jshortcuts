@@ -1,14 +1,14 @@
 #! /bin/bash
 alias cdj='cd "$JSHOR"'
-alias go='bash "$JSHOR/scripts/go.sh"'
-alias gimme='bash "$JSHOR/scripts/gimme.sh"'
-alias dag='bash "$JSHOR/scripts/dag.sh"'
-alias jira='bash "$JSHOR/scripts/open_jira.sh"'
-alias conf='bash "$JSHOR/scripts/open_conf.sh"'
-alias peek='bash "$JSHOR/scripts/peek.sh"'
-alias ala='bash "$JSHOR/scripts/alias_adder.sh"'
-alias addkeys='bash "$JSHOR/scripts/add_keys.sh"'
-alias gmd='bash "$JSHOR/scripts/candi_meter_query.sh"'
+alias go='bash "$JSHOR/src/go.sh"'
+alias gimme='bash "$JSHOR/src/gimme.sh"'
+alias dag='bash "$JSHOR/src/dag.sh"'
+alias jira='bash "$JSHOR/src/open_jira.sh"'
+alias conf='bash "$JSHOR/src/open_conf.sh"'
+alias peek='bash "$JSHOR/src/peek.sh"'
+alias ala='bash "$JSHOR/src/alias_adder.sh"'
+alias addkeys='bash "$JSHOR/src/add_keys.sh"'
+alias gmd='bash "$JSHOR/src/candi_meter_query.sh"'
 
 # Pretty colors
 

@@ -71,14 +71,14 @@ Now you are ready to run the scripts!
 All these tools have robust help pages.
 Please refer to them for further details and options by adding `-h` to the end of the command.
 
-* `addkeys` (scripts/add_keys.sh) - Quickly adds all keys in your .ssh keys folder (specified in configs) to the keychain. *Note*: There's no help page for this tool. It takes no arguments and all configuration is done in `util/.jshor_config`.
-* `ala` (scripts/alias_adder.sh) - Quickly adds an alias to a specified network interface.
-* `dag` (scripts/dag.sh) - Opens diagnostic pages for a Gateway at a specified local IP address.
-* `gimme` (scripts/gimme.sh) - Quickly ssh-es into a Gateway at a specified IP and secure copies a file or directory between the Gateway and your local machine.
-* `go` (scripts/go.sh) - Pings a Gateway at a specified local IP address and ssh-es into it if it finds it to be online.
-* `conf` (scripts/open_conf.sh) - Quickly opens Confluence, with optional arguments to go to specific pages.
-* `jira` (scripts/open_jira.sh) - Quickly opens JIRA, with optional arguments to go to specific dashboards, filters, searches, or to open one or more specific tickets by number.
-* `peek` (scripts/peek.sh) - Quickly opens a specified local IP address in your browser to view. This is useful for local devices t hat serve up GUIs or have info you want to be able to see quickly.
+* `addkeys` (src/add_keys.sh) - Quickly adds all keys in your .ssh keys folder (specified in configs) to the keychain. *Note*: There's no help page for this tool. It takes no arguments and all configuration is done in `util/.jshor_config`.
+* `ala` (src/alias_adder.sh) - Quickly adds an alias to a specified network interface.
+* `dag` (src/dag.sh) - Opens diagnostic pages for a Gateway at a specified local IP address.
+* `gimme` (src/gimme.sh) - Quickly ssh-es into a Gateway at a specified IP and secure copies a file or directory between the Gateway and your local machine.
+* `go` (src/go.sh) - Pings a Gateway at a specified local IP address and ssh-es into it if it finds it to be online.
+* `conf` (src/open_conf.sh) - Quickly opens Confluence, with optional arguments to go to specific pages.
+* `jira` (src/open_jira.sh) - Quickly opens JIRA, with optional arguments to go to specific dashboards, filters, searches, or to open one or more specific tickets by number.
+* `peek` (src/peek.sh) - Quickly opens a specified local IP address in your browser to view. This is useful for local devices t hat serve up GUIs or have info you want to be able to see quickly.
 
 ## Directory Structure
 
@@ -100,7 +100,7 @@ jshortcuts
 │   ├── aliases.sh
 │   ├── findSubnet.sh
 │   └── sanitize.sh
-└── scripts/
+└── src/
     ├── add_keys.sh
     ├── alias_adder.sh
     ├── dag.sh
