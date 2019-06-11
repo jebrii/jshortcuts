@@ -6,7 +6,7 @@
 ssh_key_gw='/Users/hraschke/.ssh/keys/candi4k'
 ssh_key_cloud='/Users/hraschke/.ssh/keys/altair_rsa_key'
 ssh_key_comp='/Users/hraschke/.ssh/keys/id_rsa'
-ssh_keys='/Users/hraschke/.ssh/keys/'
+ssh_keys='/Users/hraschke/.ssh/keys'
 
 default_subnet='10.38.0'
 
