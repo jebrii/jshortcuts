@@ -3,10 +3,8 @@
 
 # user specific
 
-ssh_key_gw='/Users/hraschke/.ssh/keys/candi4k'
-ssh_key_cloud='/Users/hraschke/.ssh/keys/altair_rsa_key'
-ssh_key_comp='/Users/hraschke/.ssh/keys/id_rsa'
-ssh_keys='/Users/hraschke/.ssh/keys'
+ssh_keys='/Users/[your-user]/.ssh'
+ssh_key_gw='/Users/[your-user]/.ssh/candi4k'
 
 default_subnet='10.38.0'
 
@@ -20,12 +18,17 @@ iface='' # scan all ifaces
 user='root'
 dest="."
 
-dag_pages=( 'Zuul/native' 'Zuul/zuulServer?cmd=get_status' 'Zuul/zuulServer?cmd=get_labels' 'Zuul/zuulServer?cmd=discovery' )
+dag_pages=( \
+  'Zuul/native' \
+  'Zuul/zuulServer?cmd=get_status' \
+  'Zuul/zuulServer?cmd=get_labels' \
+  'Zuul/zuulServer?cmd=discovery' \
+)
 
 # aliasAdder
 
-al_iface="en0"          # Henry's wifi interface
-al_ip="10.37.37.248"    # Preset IP for Henry on 10.37.37.0 subnet
+al_iface="en0"          # Your primary network interface
+al_ip="10.37.37.248"    # Preset alias IP for you on another subnet
 al_nm="255.255.255.0"   # Standard netmask
 
 echo "this should not be read"
