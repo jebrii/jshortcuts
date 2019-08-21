@@ -78,7 +78,7 @@ Please refer to them for further details and options by adding `-h` to the end o
 * `go` (src/go.sh) - Pings a Gateway at a specified local IP address and ssh-es into it if it finds it to be online.
 * `conf` (src/open_conf.sh) - Quickly opens Confluence, with optional arguments to go to specific pages.
 * `jira` (src/open_jira.sh) - Quickly opens JIRA, with optional arguments to go to specific dashboards, filters, searches, or to open one or more specific tickets by number.
-* `peek` (src/peek.sh) - Quickly opens a specified local IP address in your browser to view. This is useful for local devices t hat serve up GUIs or have info you want to be able to see quickly.
+* `peek` (src/peek.sh) - Quickly opens a specified local IP address in your browser to view. This is useful for local devices that serve up GUIs or have info you want to be able to see quickly.
 
 ## Directory Structure
 
@@ -96,7 +96,7 @@ jshortcuts
 │   │   ├── open_conf_help.txt
 │   │   ├── open_jira_help.txt
 │   │   └── peek_help.txt
-│   ├── .jshor_config
+│   ├── .jshor_config[.example]
 │   ├── aliases.sh
 │   ├── findSubnet.sh
 │   └── sanitize.sh
@@ -120,3 +120,5 @@ jshortcuts requires Mac OS 10.12 or above.
 It basically doesn't work with anything else.
 
 If you don't use Mac... Sorry?? ...you know... for, like, your life choices and all. But, yeah... you can't use this tool.
+
+Future adaptation to Linux would be relatively trivial and can be done upon request.
