@@ -22,8 +22,8 @@ This makes installation a little less fool-proof, but easier to reverse.
 It also allows all the code to stay in this git repository, located anywhere you like on your computer.
 
 To use jshortcuts, we'll need to simply add the correct lines to our bash profile.
-If you don't have a file called `.bash_profile` in your home directory, you'll want to make one by typing `touch ~/.bash_profile` into your terminal.
-Now, you can edit that file with `nano ~/.bash_profile`.
+If you don't have a file called `.bash_profile` in your home directory, you'll want to make one  (e.g., `touch ~/.bash_profile`).
+Now, you can edit that file with your favorite editor (e.g., `nano ~/.bash_profile`).
 
 Here's an example of some lines you will want to add to your `~/.bash_profile` in order to take advantage of these shortcuts:
 
@@ -42,8 +42,8 @@ source "$JSHOR/util/aliases.sh"
 Note that the `[/path/to/jshortcuts]` above should be replaced with the path to the root of this repo, without the trailing slash.
 For me, this is `/Users/jebrii/jdev/jshortcuts`.
 
-Once you are finished, press `Ctrl + O` (yes, control and not command) and save the changes to the file.
-Now, you can run `source ~/.bash_profile` to make the terminal recognize the changes you have made and assign the aliases.
+Once you are finished, save the changes to the file (e.g., `Ctrl + O` if you opted to use `nano`).
+Now, run `source ~/.bash_profile` to make the terminal recognize the changes you have made and assign the aliases.
 
 ### Configuration
 
