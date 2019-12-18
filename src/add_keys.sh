@@ -17,6 +17,5 @@ for i in "${keys[@]}"; do
     echo -e "${CYAN}Added $i to keychain.${NC}"
   else
     echo -e "${RED}Failed to add $i.${NC}" >&2
-    cat /dev/null
   fi
 done
