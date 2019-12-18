@@ -1,6 +1,8 @@
 #! /bin/bash
 
-source "/Users/${USER}/.bash_profile"
+if [ -z ${JSHOR+x} ]; then
+  source "/Users/${USER}/.bash_profile"
+fi
 
 config_vars=$(bash "$JSHOR/util/sanitize.sh" "$JSHOR/util/.jshor_config")
 eval "$config_vars"
